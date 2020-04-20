@@ -1,2 +1,2 @@
-# MMM-alarm
-MagicMirror 2 Alert trigger under development
+# MMM-timer
+MagicMirror 2 Alert & timer trigger under development
