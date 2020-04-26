@@ -6,7 +6,7 @@
 
 Module.register("timer", {
     defaults: {},
-	getScripts: function() {return ["moment.js"];},
+	   getScripts: function() {return ["moment.js", "jquery.min.js"];},
 
 	start: function() {
 		Log.info("Starting module: " + this.name); var self = this;
@@ -47,9 +47,6 @@ Module.register("timer", {
             	if (window.innerWidth < bodysize){
         	    	$("body").css({"transform":"scale(" + window.innerWidth / bodysize * 1.55 + ")"});
                     $(".calendar, .monthly").css({"display":"none"});
-                    $(".weather .weathericon").css({"float":"right"});
-                    $(".weather .weathericon").css({"left":"-10px"});
-                    $(".weather .bright").css({"left":"-5px"});
                     $(".weather").addClass("wscaled");
                     $(".pre-line").addClass("cscaled");
         	    } else {
@@ -58,9 +55,9 @@ Module.register("timer", {
             } else if (now >= d + j + j && now < f + g + g) {
             	if (window.innerWidth < bodysize){
         	    	$("body").css({"transform":"scale(" + window.innerWidth / bodysize + ")"});
-	    	        $(".calendar, .monthly").css({"display":"inherit"});
-	    	        $(".weather").removeClass("wscaled");
-	    	        $(".pre-line").removeClass("cscaled");
+        	        $(".calendar, .monthly").css({"display":"inherit"});
+        	        $(".weather").removeClass("wscaled");
+        	        $(".pre-line").removeClass("cscaled");
         	    } else {
         		    $("body").css({"transform":"scale(1)"});
         	    }
