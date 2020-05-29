@@ -12,7 +12,7 @@ Module.register("timer", {
 		MinPoint: 22,
 	},
 	
-	getScripts: function() {return ["moment.js", "jquery.js"];},
+	getScripts: function() {return ["moment.js", "jquery.min.js"];},
 
 	start: function() {
 		Log.info("Starting module: " + this.name); var self = this;
