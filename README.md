@@ -1,5 +1,5 @@
 # MMM-timer
-MagicMirror 2 Alert & timer trigger under development
+MagicMirror 2 Alert & timer trigger
 
 put in config.js and is working in background
 all settings are inside of module
