@@ -5,21 +5,18 @@
 */
 
 Module.register("timer", {
-	defaults: {
-		NightFade: true,
-		NightMode: false,
-		MaxPoint: 23,
-		MinPoint: 22,
-	},
+	defaults: {},
 	
-	getScripts: function() {return ["moment.js", "jquery.min.js"];},
+	getScripts: function() {
+		return ["moment.js"];
+	},
 
 	start: function() {
 		Log.info("Starting module: " + this.name); var self = this;
 
 		setInterval(function() {
 			var now = moment().format("HH:mm:ss"); var date = moment().format("DD-MM mm:ss");
-			var bodysize = 1080; $("body").css({"min-width": bodysize + "px"});
+			var bodysize = 1080; document.querySelector("body").style["min-width"] = bodysize + "px";
 			var a = self.config.MaxPoint; var b = "00"; var c = "06"; var d = "07"; // var e = "08";
 			var f = self.config.MinPoint; var g = ":59"; var h = ":" + g - 5; var j = ":" + b;
 
@@ -51,64 +48,81 @@ Module.register("timer", {
 
 			if (!self.config.NightMode) {
 				if (window.innerWidth < bodysize){
-					$("body").css({"transform":"scale(" + window.innerWidth / bodysize + ")"});
+                    document.querySelector("body").style.transform = "scale(" + window.innerWidth / bodysize + ")";
 				} else {
-					$("body").css({"transform":"scale(1)"});
+                    document.querySelector("body").style.transform = "scale(1)";
 				}
 			}
 
 			if (self.config.NightMode) {
 				if (window.innerWidth < bodysize){
 					if ((now >= a + j + j && now < a + g + g) || (now >= b + j + j && now < c + g + g)) {
-						$("body").css({"transform":"scale(" + window.innerWidth / bodysize * 1.53 + ")"});
-						$(".calendar, .monthly").css({"display":"none"});
-						$(".weather").addClass("wscaled");
-						$(".pre-line").addClass("cscaled");
+                        document.querySelector("body").style.transform = "scale(" + window.innerWidth / bodysize * 1.5 + ")";
+                        document.querySelector(".calendar").style.display = "none";
+                        document.querySelector(".monthly").style.display = "none";
+                        document.querySelector(".weather").classList.add("wscaled");
+                        document.querySelector(".pre-line").classList.add("cscaled");
 					} else if (now >= d + j + j && now < f + g + g) {
-						$("body").css({"transform":"scale(" + window.innerWidth / bodysize + ")"});
-						$(".calendar, .monthly").css({"display":"inherit"});
-						$(".weather").removeClass("wscaled");
-						$(".pre-line").removeClass("cscaled");
+						document.querySelector("body").style.transform = "scale(" + window.innerWidth / bodysize + ")";
+                        document.querySelector(".calendar").style.display = "inherit";
+                        document.querySelector(".monthly").style.display = "inherit";
+                        document.querySelector(".weather").classList.remove("wscaled");
+                        document.querySelector(".pre-line").classList.remove("cscaled");
 					} 
 				} else {
-					$("body").css({"transform":"scale(1)"});
-					$(".calendar, .monthly").css({"display":"inherit"});
-					$(".weather").removeClass("wscaled");
-					$(".pre-line").removeClass("cscaled");
+				    document.querySelector("body").style.transform = "scale(1)";
+                    document.querySelector(".calendar").style.display = "inherit";
+                    document.querySelector(".monthly").style.display = "inherit";
+                    document.querySelector(".weather").classList.remove("wscaled");
+                    document.querySelector(".pre-line").classList.remove("cscaled");
 				}
 			}
 
 			if (self.config.NightFade) {
 				if (now >= a + j + j && now < a + ":09" + g) {
-					$("body").css({"opacity":"0.93", "-webkit-filter":"grayscale(7.15%)"});
+					document.querySelector("body").style.opacity = "0.93";
+					document.querySelector("body").style["-webkit-filter"] = "grayscale(7.15%)";
 				} else if (now >= a + ":10" + j && now < a + ":19" + g) {
-					$("body").css({"opacity":"0.86", "-webkit-filter":"grayscale(14.29%)"});
+					document.querySelector("body").style.opacity = "0.86";
+					document.querySelector("body").style["-webkit-filter"] = "grayscale(14.29%)";
 				} else if (now >= a + ":20" + j && now < a + ":29" + g) {
-					$("body").css({"opacity":"0.79", "-webkit-filter":"grayscale(21.42%)"});
+					document.querySelector("body").style.opacity = "0.79";
+					document.querySelector("body").style["-webkit-filter"] = "grayscale(21.42%)";
 				} else if (now >= a + ":30" + j && now < a + ":39" + g) {
-					$("body").css({"opacity":"0.71", "-webkit-filter":"grayscale(28.57%)"});
+					document.querySelector("body").style.opacity = "0.71";
+					document.querySelector("body").style["-webkit-filter"] = "grayscale(28.57%)";
 				} else if (now >= a + ":40" + j && now < a + ":49" + g) {
-					$("body").css({"opacity":"0.64", "-webkit-filter":"grayscale(35.71%)"});
+					document.querySelector("body").style.opacity = "0.64";
+					document.querySelector("body").style["-webkit-filter"] = "grayscale(35.71%)";
 				} else if (now >= a + ":50" + j && now < a + g + g) {
-					$("body").css({"opacity":"0.57", "-webkit-filter":"grayscale(42.85%)"});
+					document.querySelector("body").style.opacity = "0.57";
+					document.querySelector("body").style["-webkit-filter"] = "grayscale(42.85%)";
 				} else if (now >= b + j + j && now < c + g + g) {
-					$("body").css({"opacity":"0.50", "-webkit-filter":"grayscale(50%)"});
+					document.querySelector("body").style.opacity = "0.50";
+					document.querySelector("body").style["-webkit-filter"] = "grayscale(50%)";
 				}
 
 				if (now >= c + j + j && now < c + ":09" + g) {
-					$("body").css({"opacity":"0.57", "-webkit-filter":"grayscale(42.85%)"});
+					document.querySelector("body").style.opacity = "0.57";
+					document.querySelector("body").style["-webkit-filter"] = "grayscale(42.85%)";
 				} else if (now >= c + ":10" + j && now < c + ":19" + g) {
-					$("body").css({"opacity":"0.64", "-webkit-filter":"grayscale(35.71%)"});
+					document.querySelector("body").style.opacity = "0.64";
+					document.querySelector("body").style["-webkit-filter"] = "grayscale(35.71%)";
 				} else if (now >= c + ":20" + j && now < c + ":29" + g) {
-					$("body").css({"opacity":"0.71", "-webkit-filter":"grayscale(28.57%)"});
+					document.querySelector("body").style.opacity = "0.71";
+					document.querySelector("body").style["-webkit-filter"] = "grayscale(28.57%)";
 				} else if (now >= c + ":30" + j && now < c + ":39" + g) {
-					$("body").css({"opacity":"0.79", "-webkit-filter":"grayscale(21.42%)"});
+					document.querySelector("body").style.opacity = "0.79";
+					document.querySelector("body").style["-webkit-filter"] = "grayscale(21.42%)";
 				} else if (now >= c + ":40" + j && now < c + ":49" + g) {
-					$("body").css({"opacity":"0.86", "-webkit-filter":"grayscale(14.29%)"});
+					document.querySelector("body").style.opacity = "0.86";
+					document.querySelector("body").style["-webkit-filter"] = "grayscale(14.29%)";
 				} else if (now >= c + ":50" + j && now < c + g + g) {
-					$("body").css({"opacity":"0.93", "-webkit-filter":"grayscale(7.15%)"});
+					document.querySelector("body").style.opacity = "0.93";
+					document.querySelector("body").style["-webkit-filter"] = "grayscale(7.15%)";
 				} else if (now >= d + j + j && now < f + g + g) {
-					$("body").css({"opacity":"1", "-webkit-filter":"grayscale(0%)"});
+					document.querySelector("body").style.opacity = "1";
+					document.querySelector("body").style["-webkit-filter"] = "grayscale(0%)";
 				}
 			}
 
