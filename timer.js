@@ -5,7 +5,12 @@
 */
 
 Module.register("timer", {
-	defaults: {},
+	defaults: {
+		NightFade: true,
+		NightMode: false,
+		MaxPoint: 23,
+		MinPoint: 22,
+	},
 	
 	getScripts: function() {
 		return ["moment.js"];
@@ -48,33 +53,33 @@ Module.register("timer", {
 
 			if (!self.config.NightMode) {
 				if (window.innerWidth < bodysize){
-                    document.querySelector("body").style.transform = "scale(" + window.innerWidth / bodysize + ")";
+					document.querySelector("body").style.transform = "scale(" + window.innerWidth / bodysize + ")";
 				} else {
-                    document.querySelector("body").style.transform = "scale(1)";
+					document.querySelector("body").style.transform = "scale(1)";
 				}
 			}
 
 			if (self.config.NightMode) {
 				if (window.innerWidth < bodysize){
 					if ((now >= a + j + j && now < a + g + g) || (now >= b + j + j && now < c + g + g)) {
-                        document.querySelector("body").style.transform = "scale(" + window.innerWidth / bodysize * 1.5 + ")";
-                        document.querySelector(".calendar").style.display = "none";
-                        document.querySelector(".monthly").style.display = "none";
-                        document.querySelector(".weather").classList.add("wscaled");
-                        document.querySelector(".pre-line").classList.add("cscaled");
+						document.querySelector("body").style.transform = "scale(" + window.innerWidth / bodysize * 1.5 + ")";
+						document.querySelector(".calendar").style.display = "none";
+						document.querySelector(".monthly").style.display = "none";
+						document.querySelector(".weather").classList.add("wscaled");
+						document.querySelector(".pre-line").classList.add("cscaled");
 					} else if (now >= d + j + j && now < f + g + g) {
 						document.querySelector("body").style.transform = "scale(" + window.innerWidth / bodysize + ")";
-                        document.querySelector(".calendar").style.display = "inherit";
-                        document.querySelector(".monthly").style.display = "inherit";
-                        document.querySelector(".weather").classList.remove("wscaled");
-                        document.querySelector(".pre-line").classList.remove("cscaled");
+						document.querySelector(".calendar").style.display = "inherit";
+						document.querySelector(".monthly").style.display = "inherit";
+						document.querySelector(".weather").classList.remove("wscaled");
+						document.querySelector(".pre-line").classList.remove("cscaled");
 					} 
 				} else {
-				    document.querySelector("body").style.transform = "scale(1)";
-                    document.querySelector(".calendar").style.display = "inherit";
-                    document.querySelector(".monthly").style.display = "inherit";
-                    document.querySelector(".weather").classList.remove("wscaled");
-                    document.querySelector(".pre-line").classList.remove("cscaled");
+					document.querySelector("body").style.transform = "scale(1)";
+					document.querySelector(".calendar").style.display = "inherit";
+					document.querySelector(".monthly").style.display = "inherit";
+					document.querySelector(".weather").classList.remove("wscaled");
+					document.querySelector(".pre-line").classList.remove("cscaled");
 				}
 			}
 
