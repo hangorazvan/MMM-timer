@@ -16,7 +16,7 @@ Module.register("timer", {
 	},
 	
 	getStyles: function() {
-		return ["font-awesome.css"];
+		return [];
 	},
 
 	getScripts: function() {
@@ -31,31 +31,29 @@ Module.register("timer", {
 			var bodysize = 1080; document.querySelector("body").style["min-width"] = bodysize + "px";
 
 			if ((now == "23:00:00") || (now == "00:00:00") || (now == "01:00:00")) {
-				self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: "<i class=\"far fa-bell\"></i> Ora exactă!", message: "<i class=\"far fa-clock\"></i> A fost ora " + moment().format("H:mm") + "<br><i class=\"fas fa-bed\"></i> Noapte bună!"});
+				self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: "Ora exactă!", message: "A fost ora " + moment().format("H:mm") + "<br>Noapte bună!"});
 			} else if ((now == "02:00:00") || (now == "03:00:00") || (now == "04:00:00")) {
-				self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: "<i class=\"far fa-bell\"></i> Ora exactă!", message: "<i class=\"far fa-clock\"></i> A fost ora " + moment().format("H:mm") + "<br><i class=\"fas fa-bed\"></i> Somn ușor!"});
+				self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: "Ora exactă!", message: "A fost ora " + moment().format("H:mm") + "<br>Somn ușor!"});
 			} else if ((now == "05:00:00") || (now == "06:00:00") || (now == "07:00:00") || (now == "08:00:00") || (now == "09:00:00") || (now == "10:00:00") || (now == "11:00:00")) {
-	 			self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: "<i class=\"far fa-bell\"></i> Ora exactă!", message: "<i class=\"far fa-clock\"></i> A fost ora " + moment().format("H:mm") + "<br><i class=\"fas fa-coffee\"></i> Bună dimineața!"});
+	 			self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: "Ora exactă!", message: "A fost ora " + moment().format("H:mm") + "<br>Bună dimineața!"});
 			} else if ((now == "12:00:00") || (now == "13:00:00") || (now == "14:00:00")) {
-	 			self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: "<i class=\"far fa-bell\"></i> Ora exactă!", message: "<i class=\"far fa-clock\"></i> A fost ora " + moment().format("H:mm") + "<br><i class=\"fas fa-pizza-slice\"></i> Poftă bună!"});
+	 			self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: "Ora exactă!", message: "A fost ora " + moment().format("H:mm") + "<br>Poftă bună!"});
 			} else if ((now == "15:00:00") || (now == "16:00:00") || (now == "17:00:00")) {
-	 			self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: "<i class=\"far fa-bell\"></i> Ora exactă!", message: "<i class=\"far fa-clock\"></i> A fost ora " + moment().format("H:mm") + "<br><i class=\"far fa-smile\"></i> O zi cât mai bună!"});
+	 			self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: "Ora exactă!", message: "A fost ora " + moment().format("H:mm") + "<br>O zi cât mai bună!"});
 			} else if ((now == "18:00:00") || (now == "19:00:00") || (now == "20:00:00") || (now == "21:00:00") || (now == "22:00:00")) {
-	 			self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: "<i class=\"far fa-bell\"></i> Ora exactă!", message: "<i class=\"far fa-clock\"></i> A fost ora " + moment().format("H:mm") + "<br><i class=\"far fa-moon\"></i> O seară plăcută!"});
+	 			self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: "Ora exactă!", message: "A fost ora " + moment().format("H:mm") + "<br>O seară plăcută!"});
 			}
 
 			if ((date == "25-12 59:54") || (date == "26-12 59:54")) {
-				self.sendNotification("SHOW_ALERT", {type: "notification", title: "<i class=\"far fa-bell\"></i> Crăciun fericit!", message: "<i class=\"fas fa-gifts\"></i> Sărbători fericite cu multe bucurii!"});
+				self.sendNotification("SHOW_ALERT", {type: "notification", title: "Crăciun fericit!", message: "Sărbători fericite cu multe bucurii!"});
 			} else if ((date == "01-01 59:54") || (date == "02-01 59:54")) {
-				self.sendNotification("SHOW_ALERT", {type: "notification", title: "<i class=\"far fa-bell\"></i> La mulți ani " + moment().format("YYYY") + "!", message: "<i class=\"fas fa-glass-cheers\"></i> Un an nou cât mai bun și multă sănătate!"});
+				self.sendNotification("SHOW_ALERT", {type: "notification", title: "La mulți ani " + moment().format("YYYY") + "!", message: "Un an nou cât mai bun și multă sănătate!"});
 			} else if (date == "22-08 59:54") {
-				self.sendNotification("SHOW_ALERT", {type: "notification", title: "<i class=\"far fa-bell\"></i> La mulți ani Paula!", message: "<i class=\"fas fa-birthday-cake\"></i> Multă sănătate și să fi fericită!"});
+				self.sendNotification("SHOW_ALERT", {type: "notification", title: "La mulți ani Paula!", message: "Multă sănătate și să fi fericită!"});
 			} else if (date == "13-10 59:54") {
-				self.sendNotification("SHOW_ALERT", {type: "notification", title: "<i class=\"far fa-bell\"></i> La mulți ani Răzvan!", message: "<i class=\"fas fa-birthday-cake\"></i> Multă sănătate și să fi fericit!"});
+				self.sendNotification("SHOW_ALERT", {type: "notification", title: "La mulți ani Răzvan!", message: "Multă sănătate și să fi fericit!"});
 			} else if (date == "14-02 59:54") {
-				self.sendNotification("SHOW_ALERT", {type: "notification", title: "<i class=\"far fa-bell\"></i> Happy Valentine's Day!", message: "<i class=\"fas fa-heart\"></i> La mulți ani cu sex si și orgasme multiple!"});
-			} else if (date == "01-06 59:54") {
-				self.sendNotification("SHOW_ALERT", {type: "notification", title: "<i class=\"far fa-bell\"></i> Happy Valentine's Day!", message: "<i class=\"fas fa-heart\"></i> La mulți ani copii!"});
+				self.sendNotification("SHOW_ALERT", {type: "notification", title: "Happy Valentine's Day!", message: "La mulți ani și multă fericire!"});
 			}
 
 			if (!self.config.NightMode) {
