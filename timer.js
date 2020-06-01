@@ -41,31 +41,31 @@ Module.register("timer", {
 
 			if (self.config.SharpMode) {
 				if ((now == "23:00:00") || (now == "00:00:00") || (now == "01:00:00")) {
-					self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: this.translate("Ora exactă!"), message: this.translate("A fost ora ") + moment().format("H:mm") + "<br>" + this.translate("Noapte bună!")});
+					self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: self.translate("Ora exactă!"), message: self.translate("A fost ora ") + moment().format("H:mm") + "<br>" + self.translate("Noapte bună!")});
 				} else if ((now == "02:00:00") || (now == "03:00:00") || (now == "04:00:00")) {
-					self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: this.translate("Ora exactă!"), message: this.translate("A fost ora ") + moment().format("H:mm") + "<br>" + this.translate("Somn ușor!")});
+					self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: self.translate("Ora exactă!"), message: self.translate("A fost ora ") + moment().format("H:mm") + "<br>" + self.translate("Somn ușor!")});
 				} else if ((now == "05:00:00") || (now == "06:00:00") || (now == "07:00:00") || (now == "08:00:00") || (now == "09:00:00") || (now == "10:00:00") || (now == "11:00:00")) {
-					self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: this.translate("Ora exactă!"), message: this.translate("A fost ora ") + moment().format("H:mm") + "<br>" + this.translate("Bună dimineața!")});
+					self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: self.translate("Ora exactă!"), message: self.translate("A fost ora ") + moment().format("H:mm") + "<br>" + self.translate("Bună dimineața!")});
 				} else if ((now == "12:00:00") || (now == "13:00:00") || (now == "14:00:00")) {
-					self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: this.translate("Ora exactă!"), message: this.translate("A fost ora ") + moment().format("H:mm") + "<br>" + this.translate("Poftă bună!")});
+					self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: self.translate("Ora exactă!"), message: self.translate("A fost ora ") + moment().format("H:mm") + "<br>" + self.translate("Poftă bună!")});
 				} else if ((now == "15:00:00") || (now == "16:00:00") || (now == "17:00:00")) {
-					self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: this.translate("Ora exactă!"), message: this.translate("A fost ora ") + moment().format("H:mm") + "<br>" + this.translate("O zi cât mai bună!")});
+					self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: self.translate("Ora exactă!"), message: self.translate("A fost ora ") + moment().format("H:mm") + "<br>" + self.translate("O zi cât mai bună!")});
 				} else if ((now == "18:00:00") || (now == "19:00:00") || (now == "20:00:00") || (now == "21:00:00") || (now == "22:00:00")) {
-					self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: this.translate("Ora exactă!"), message: this.translate("A fost ora ") + moment().format("H:mm") + "<br>" + this.translate("O seară plăcută!")});
+					self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: self.translate("Ora exactă!"), message: self.translate("A fost ora ") + moment().format("H:mm") + "<br>" + self.translate("O seară plăcută!")});
 				}
 			}
 
 			if (self.config.DateMode) {
 				if ((date == "25-12 59:54") || (date == "26-12 59:54")) {
-					self.sendNotification("SHOW_ALERT", {type: "notification", title: this.translate("Crăciun fericit!"), message: this.translate("Sărbători fericite cu multe bucurii!")});
+					self.sendNotification("SHOW_ALERT", {type: "notification", title: self.translate("Crăciun fericit!"), message: self.translate("Sărbători fericite cu multe bucurii!")});
 				} else if ((date == "01-01 59:54") || (date == "02-01 59:54")) {
-					self.sendNotification("SHOW_ALERT", {type: "notification", title: this.translate("La mulți ani ") + moment().format("YYYY") + "!", message: this.translate("Un an nou cât mai bun și multă sănătate!")});
+					self.sendNotification("SHOW_ALERT", {type: "notification", title: self.translate("La mulți ani ") + moment().format("YYYY") + "!", message: self.translate("Un an nou cât mai bun și multă sănătate!")});
 				} else if (date == "22-08 59:54") {
-					self.sendNotification("SHOW_ALERT", {type: "notification", title: this.translate("La mulți ani,") + " Paula!", message: this.translate("Multă sănătate și să fi fericită!")});
+					self.sendNotification("SHOW_ALERT", {type: "notification", title: self.translate("La mulți ani,") + " Paula!", message: self.translate("Multă sănătate și să fi fericită!")});
 				} else if (date == "13-10 59:54") {
-					self.sendNotification("SHOW_ALERT", {type: "notification", title: this.translate("La mulți ani,") + " Răzvan!", message: this.translate("Multă sănătate și să fi fericit!")});
+					self.sendNotification("SHOW_ALERT", {type: "notification", title: self.translate("La mulți ani,") + " Răzvan!", message: self.translate("Multă sănătate și să fi fericit!")});
 				} else if (date == "14-02 59:54") {
-					self.sendNotification("SHOW_ALERT", {type: "notification", title: this.translate("Happy Valentine's Day!"), message: this.translate("La mulți ani și multă fericire!")});
+					self.sendNotification("SHOW_ALERT", {type: "notification", title: self.translate("Happy Valentine's Day!"), message: self.translate("La mulți ani și multă fericire!")});
 				}
 			}
 
