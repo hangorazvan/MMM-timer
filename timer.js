@@ -33,7 +33,8 @@ Module.register("timer", {
 	},
 
 	start: function() {
-		Log.info("Starting module: " + this.name); var self = this;
+		Log.info("Starting module: " + this.name); 
+		var self = this;
 
 		setInterval(function() {
 			var now = moment().format("HH:mm:ss"); var date = moment().format("DD-MM mm:ss");
