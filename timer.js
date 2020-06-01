@@ -6,13 +6,13 @@
 
 Module.register("timer", {
 	defaults: {
-          NightFade: true,
-          NightMode: false,
-          FirstPoint: "23",
-          SecondPoint: "00",
-          ThirdPoint: "06",
-          ForthPoint: "07",
-          FifthPoint: "22",
+		NightFade: true,
+		NightMode: false,
+		FirstPoint: "23",
+		SecondPoint: "00",
+		ThirdPoint: "06",
+		ForthPoint: "07",
+		FifthPoint: "22",
 	},
 	
 	getStyles: function() {
@@ -35,13 +35,13 @@ Module.register("timer", {
 			} else if ((now == "02:00:00") || (now == "03:00:00") || (now == "04:00:00")) {
 				self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: "Ora exactă!", message: "A fost ora " + moment().format("H:mm") + "<br>Somn ușor!"});
 			} else if ((now == "05:00:00") || (now == "06:00:00") || (now == "07:00:00") || (now == "08:00:00") || (now == "09:00:00") || (now == "10:00:00") || (now == "11:00:00")) {
-	 			self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: "Ora exactă!", message: "A fost ora " + moment().format("H:mm") + "<br>Bună dimineața!"});
+				self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: "Ora exactă!", message: "A fost ora " + moment().format("H:mm") + "<br>Bună dimineața!"});
 			} else if ((now == "12:00:00") || (now == "13:00:00") || (now == "14:00:00")) {
-	 			self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: "Ora exactă!", message: "A fost ora " + moment().format("H:mm") + "<br>Poftă bună!"});
+				self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: "Ora exactă!", message: "A fost ora " + moment().format("H:mm") + "<br>Poftă bună!"});
 			} else if ((now == "15:00:00") || (now == "16:00:00") || (now == "17:00:00")) {
-	 			self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: "Ora exactă!", message: "A fost ora " + moment().format("H:mm") + "<br>O zi cât mai bună!"});
+				self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: "Ora exactă!", message: "A fost ora " + moment().format("H:mm") + "<br>O zi cât mai bună!"});
 			} else if ((now == "18:00:00") || (now == "19:00:00") || (now == "20:00:00") || (now == "21:00:00") || (now == "22:00:00")) {
-	 			self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: "Ora exactă!", message: "A fost ora " + moment().format("H:mm") + "<br>O seară plăcută!"});
+				self.sendNotification("SHOW_ALERT", {type: "notification", timer: 10000, title: "Ora exactă!", message: "A fost ora " + moment().format("H:mm") + "<br>O seară plăcută!"});
 			}
 
 			if ((date == "25-12 59:54") || (date == "26-12 59:54")) {
