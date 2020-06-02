@@ -10,11 +10,11 @@ Module.register("timer", {
 		DateMode: true, //  specific date hourly alert notification
 		FadeMode: true, // fade to dimmed mode over night and back in the morning
 		NightMode: false, // zoomed night mode for iPad
-		FirstPoint: "23",
-		SecondPoint: "00",
-		ThirdPoint: "06",
-		ForthPoint: "07",
-		FifthPoint: "22",
+		FirstPoint: "23", // time of fade start increase
+		SecondPoint: "00", // time of fade stop decrease and night mode start
+		ThirdPoint: "06", // time of fade start decrease
+		ForthPoint: "07", // time of fade mode stop decrease and day mode start
+		FifthPoint: "22", // time of day mode stop
 	},
 	
 	getStyles: function() {
