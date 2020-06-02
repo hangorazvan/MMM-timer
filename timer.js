@@ -6,10 +6,10 @@
 
 Module.register("timer", {
 	defaults: {
-		SharpMode: true,
-		DateMode: true,
-		FadeMode: true,
-		NightMode: false,
+		SharpMode: true, // hourly alert notification
+		DateMode: true, //  specific date hourly alert notification
+		FadeMode: true, // fade to dimmed mode over night and back in the morning
+		NightMode: false, // zoomed night mode for iPad
 		FirstPoint: "23",
 		SecondPoint: "00",
 		ThirdPoint: "06",
