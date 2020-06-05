@@ -101,7 +101,16 @@ Module.register("timer", {
 					document.querySelector(".pre-line").classList.remove("cscaled");
 				}
 			}
-			
+/*
+			var winter = moment().format("MM");
+			if ((winter >= "01" && winter <= "03") || (winter >= "11" && winter <= "12")) {
+				ThirdPoint = "07";
+				ForthPoint = "08";
+			} else {
+				ThirdPoint = "06";
+				ForthPoint = "07";
+			}
+*/
 			if (self.config.FadeMode) {
 				if (now >= self.config.FirstPoint + "00:00" && now < self.config.FirstPoint + ":09:59") {
 					document.querySelector("body").style.opacity = "0.93";
