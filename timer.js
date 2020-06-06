@@ -37,8 +37,9 @@ Module.register("timer", {
 		var self = this;
 
 		setInterval(function() {
-			var now = moment().format("HH:mm:ss"); var date = moment().format("DD-MM mm:ss");
-			var bodysize = 1080; document.querySelector("body").style["min-width"] = bodysize + "px";
+			var now = moment().format("HH:mm:ss"); var hide = moment().format("ss");
+			var date = moment().format("DD-MM mm:ss"); var bodysize = 1080; 
+			document.querySelector("body").style["min-width"] = bodysize + "px";
 
 			if (self.config.SharpMode) {
 				if ((now == "23:00:00") || (now == "00:00:00") || (now == "01:00:00")) {
@@ -68,6 +69,10 @@ Module.register("timer", {
 				} else if (date == "14-02 00:06") {
 					self.sendNotification("SHOW_ALERT", {type: "notification", timer: 9000, title: self.translate("Happy Valentine's Day!"), message: self.translate("La mulți ani și multă fericire!")});
 				}
+			}
+			
+			if ((hide == "16") || (hide == "31") || (hide == "46")) {
+				self.sendNotification("HIDE_ALERT");
 			}
 
 			if (!self.config.NightMode) {
@@ -101,16 +106,7 @@ Module.register("timer", {
 					document.querySelector(".pre-line").classList.remove("cscaled");
 				}
 			}
-/*
-			var winter = moment().format("MM");
-			if ((winter >= "01" && winter <= "03") || (winter >= "11" && winter <= "12")) {
-				ThirdPoint = "07";
-				ForthPoint = "08";
-			} else {
-				ThirdPoint = "06";
-				ForthPoint = "07";
-			}
-*/
+			
 			if (self.config.FadeMode) {
 				if (now >= self.config.FirstPoint + "00:00" && now < self.config.FirstPoint + ":09:59") {
 					document.querySelector("body").style.opacity = "0.93";
