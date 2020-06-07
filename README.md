@@ -17,4 +17,4 @@ all settings are inside of module
 <br>&nbsp;&nbsp;&nbsp;&nbsp;ForthPoint: "07", // time of fade mode stop decrease and day mode start
 <br>&nbsp;&nbsp;&nbsp;&nbsp;FifthPoint: "22", // time of day mode stop
 <br>&nbsp;&nbsp;&nbsp;&nbsp;}
-},
+<br>},
