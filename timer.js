@@ -7,7 +7,7 @@
 Module.register("timer", {
 	defaults: {
 		SharpMode: true, // hourly alert notification
-		DateMode: true, //  specific date hourly alert notification
+		DateMode: true, // specific date hourly alert notification
 		FadeMode: true, // fade to dimmed mode over night and back in the morning
 		NightMode: false, // zoomed night mode for iPad
 		FirstPoint: "23", // time of fade start increase
@@ -75,14 +75,6 @@ Module.register("timer", {
 				self.sendNotification("HIDE_ALERT");
 			}
 
-			if (!self.config.NightMode) {
-				if (window.innerWidth < bodysize){
-					document.querySelector("body").style.transform = "scale(" + window.innerWidth / bodysize + ")";
-				} else {
-					document.querySelector("body").style.transform = "scale(1)";
-				}
-			}
-
 			if (self.config.NightMode) {
 				if (window.innerWidth < bodysize){
 					if ((now >= self.config.FirstPoint + ":00:00" && now < self.config.FirstPoint + ":59:59") || (now >= self.config.SecondPoint + ":00:00" && now < self.config.ThirdPoint + ":59:59")) {
@@ -104,6 +96,13 @@ Module.register("timer", {
 					document.querySelector(".monthly").style.display = "inherit";
 					document.querySelector(".weather").classList.remove("wscaled");
 					document.querySelector(".pre-line").classList.remove("cscaled");
+				}
+
+			} else {
+				if (window.innerWidth < bodysize){
+					document.querySelector("body").style.transform = "scale(" + window.innerWidth / bodysize + ")";
+				} else {
+					document.querySelector("body").style.transform = "scale(1)";
 				}
 			}
 			
