@@ -5,17 +5,7 @@
 */
 
 Module.register("timer", {
-	defaults: {
-		SharpMode: true, // hourly alert notification
-		DateMode: true, // specific date hourly alert notification
-		FadeMode: true, // fade to dimmed mode over night and back in the morning
-		NightMode: false, // zoomed night mode for iPad
-		FirstPoint: "23", // time of fade start increase
-		SecondPoint: "00", // time of fade stop increase and night mode start
-		ThirdPoint: "06", // time of fade start decrease
-		ForthPoint: "07", // time of fade mode stop decrease and day mode start
-		FifthPoint: "22", // time of day mode stop
-	},
+	defaults: {},
 	
 	getStyles: function() {
 		return [];
@@ -81,12 +71,16 @@ Module.register("timer", {
 						document.querySelector("body").style.transform = "scale(" + window.innerWidth / bodysize * 1.5 + ")";
 						document.querySelector(".calendar").style.display = "none";
 						document.querySelector(".monthly").style.display = "none";
+						document.querySelector(".forecast").style.display = "none";
+						document.querySelector(".rssnews").style.display = "none";
 						document.querySelector(".weather").classList.add("wscaled");
 						document.querySelector(".pre-line").classList.add("cscaled");
 					} else if (now >= self.config.ForthPoint + ":00:00" && now < self.config.FifthPoint + ":59:59") {
 						document.querySelector("body").style.transform = "scale(" + window.innerWidth / bodysize + ")";
 						document.querySelector(".calendar").style.display = "inherit";
 						document.querySelector(".monthly").style.display = "inherit";
+						document.querySelector(".forecast").style.display = "inherit";
+						document.querySelector(".rssnews").style.display = "inherit";
 						document.querySelector(".weather").classList.remove("wscaled");
 						document.querySelector(".pre-line").classList.remove("cscaled");
 					} 
@@ -94,6 +88,8 @@ Module.register("timer", {
 					document.querySelector("body").style.transform = "scale(1)";
 					document.querySelector(".calendar").style.display = "inherit";
 					document.querySelector(".monthly").style.display = "inherit";
+					document.querySelector(".forecast").style.display = "inherit";
+					document.querySelector(".rssnews").style.display = "inherit";
 					document.querySelector(".weather").classList.remove("wscaled");
 					document.querySelector(".pre-line").classList.remove("cscaled");
 				}
@@ -125,12 +121,12 @@ Module.register("timer", {
 				} else if (now >= self.config.FirstPoint + ":50:00" && now < self.config.FirstPoint + ":59:59") {
 					document.querySelector("body").style.opacity = "0.57";
 					ddocument.querySelector("body").style["-webkit-filter"] = "grayscale(42.85%)";
-				} else if (now >= self.config.SecondPoint + ":00:00" && now < self.config.ThirdPoint + ":59:59") {
+				} else if (now >= self.config.SecondPoint + ":00:00" && now < self.config.ThirdPoint + ":00:00") {
 					document.querySelector("body").style.opacity = "0.50";
 					document.querySelector("body").style["-webkit-filter"] = "grayscale(50%)";
 				}
 
-				if (now >= self.config.ThirdPoint + "00:00" && now < self.config.ThirdPoint + ":09:59") {
+				if (now >= self.config.ThirdPoint + "00:01" && now < self.config.ThirdPoint + ":09:59") {
 					document.querySelector("body").style.opacity = "0.57";
 					document.querySelector("body").style["-webkit-filter"] = "grayscale(42.85%)";
 				} else if (now >= self.config.ThirdPoint + ":10:00" && now < self.config.ThirdPoint + ":19:59") {
