@@ -10,6 +10,7 @@ Module.register("timer", {
 		DateMode: true,		// specific date hourly alert notification
 		FadeMode: true,		// fade to dimmed mode over night and back in the morning
 		NightMode: false,	// zoomed night mode for iPad
+		Background: true,	// Background image set for .fullscreen.below in css file
 		FirstPoint: "23",	// time of fade start increase
 		SecondPoint: "00",	// time of fade stop increase and night mode start
 		ThirdPoint: "06",	// time of fade start decrease
@@ -111,52 +112,91 @@ Module.register("timer", {
 					document.querySelector("body").style.transform = "scale(1)";
 				}
 			}
-			
-			if (self.config.FadeMode) {
-				if (now >= self.config.FirstPoint + "00:00" && now < self.config.FirstPoint + ":09:59") {
-					document.querySelector("body").style.opacity = "0.93";
-					document.querySelector("body").style["-webkit-filter"] = "grayscale(7.15%)";
-				} else if (now >= self.config.FirstPoint + ":10:00" && now < self.config.FirstPoint + ":19:59") {
-					document.querySelector("body").style.opacity = "0.86";
-					document.querySelector("body").style["-webkit-filter"] = "grayscale(14.29%)";
-				} else if (now >= self.config.FirstPoint + ":20:00" && now < self.config.FirstPoint + ":29:59") {
-					document.querySelector("body").style.opacity = "0.79";
-					document.querySelector("body").style["-webkit-filter"] = "grayscale(21.42%)";
-				} else if (now >= self.config.FirstPoint + ":30:00" && now < self.config.FirstPoint + ":39:59") {
-					document.querySelector("body").style.opacity = "0.71";
-					document.querySelector("body").style["-webkit-filter"] = "grayscale(28.57%)";
-				} else if (now >= self.config.FirstPoint + ":40:00" && now < self.config.FirstPoint + ":49:59") {
-					document.querySelector("body").style.opacity = "0.64";
-					document.querySelector("body").style["-webkit-filter"] = "grayscale(35.71%)";
-				} else if (now >= self.config.FirstPoint + ":50:00" && now < self.config.FirstPoint + ":59:59") {
-					document.querySelector("body").style.opacity = "0.57";
-					ddocument.querySelector("body").style["-webkit-filter"] = "grayscale(42.85%)";
-				} else if (now >= self.config.SecondPoint + ":00:00" && now < self.config.ThirdPoint + ":00:00") {
-					document.querySelector("body").style.opacity = "0.50";
-					document.querySelector("body").style["-webkit-filter"] = "grayscale(50%)";
+
+			if (self.config.Background) {
+				if (now >= self.config.SecondPoint + ":00:00" && now < self.config.ThirdPoint + ":00:00") {
+					document.querySelector(".fullscreen.below").style.display = "none";
+				} else {
+					document.querySelector(".fullscreen.below").style.display = "inherit";					
 				}
 
-				if (now >= self.config.ThirdPoint + "00:01" && now < self.config.ThirdPoint + ":09:59") {
-					document.querySelector("body").style.opacity = "0.57";
-					document.querySelector("body").style["-webkit-filter"] = "grayscale(42.85%)";
-				} else if (now >= self.config.ThirdPoint + ":10:00" && now < self.config.ThirdPoint + ":19:59") {
-					document.querySelector("body").style.opacity = "0.64";
-					document.querySelector("body").style["-webkit-filter"] = "grayscale(35.71%)";
-				} else if (now >= self.config.ThirdPoint + ":20:00" && now < self.config.ThirdPoint + ":29:59") {
-					document.querySelector("body").style.opacity = "0.71";
-					document.querySelector("body").style["-webkit-filter"] = "grayscale(28.57%)";
-				} else if (now >= self.config.ThirdPoint + ":30:00" && now < self.config.ThirdPoint + ":39:59") {
-					document.querySelector("body").style.opacity = "0.79";
-					document.querySelector("body").style["-webkit-filter"] = "grayscale(21.42%)";
-				} else if (now >= self.config.ThirdPoint + ":40:00" && now < self.config.ThirdPoint + ":49:59") {
-					document.querySelector("body").style.opacity = "0.86";
-					document.querySelector("body").style["-webkit-filter"] = "grayscale(14.29%)";
-				} else if (now >= self.config.ThirdPoint + ":50:00" && now < self.config.ThirdPoint + ":59:59") {
-					document.querySelector("body").style.opacity = "0.93";
-					document.querySelector("body").style["-webkit-filter"] = "grayscale(7.15%)";
-				} else if (now >= self.config.ForthPoint + ":00:00" && now < self.config.FifthPoint + ":59:59") {
-					document.querySelector("body").style.opacity = "1";
-					document.querySelector("body").style["-webkit-filter"] = "grayscale(0%)";
+			} else {
+				document.querySelector(".fullscreen.below").style.display = "none";
+			}
+
+			if (self.config.DimMode) {
+				if (self.config.FadeMode) {
+					if (now >= self.config.FirstPoint + "00:00" && now < self.config.FirstPoint + ":09:59") {
+						document.querySelector("body").style.opacity = "0.93";
+						document.querySelector(".fullscreen.below").style.opacity = "0.24";
+						document.querySelector("body").style["-webkit-filter"] = "grayscale(7.15%)";
+					} else if (now >= self.config.FirstPoint + ":10:00" && now < self.config.FirstPoint + ":19:59") {
+						document.querySelector("body").style.opacity = "0.86";
+						document.querySelector(".fullscreen.below").style.opacity = "0.2";
+						document.querySelector("body").style["-webkit-filter"] = "grayscale(14.29%)";
+					} else if (now >= self.config.FirstPoint + ":20:00" && now < self.config.FirstPoint + ":29:59") {
+						document.querySelector("body").style.opacity = "0.79";
+						document.querySelector(".fullscreen.below").style.opacity = "0.16";
+						document.querySelector("body").style["-webkit-filter"] = "grayscale(21.42%)";
+					} else if (now >= self.config.FirstPoint + ":30:00" && now < self.config.FirstPoint + ":39:59") {
+						document.querySelector("body").style.opacity = "0.71";
+						document.querySelector(".fullscreen.below").style.opacity = "0.12";
+						document.querySelector("body").style["-webkit-filter"] = "grayscale(28.57%)";
+					} else if (now >= self.config.FirstPoint + ":40:00" && now < self.config.FirstPoint + ":49:59") {
+						document.querySelector("body").style.opacity = "0.64";
+						document.querySelector(".fullscreen.below").style.opacity = "0.08";
+						document.querySelector("body").style["-webkit-filter"] = "grayscale(35.71%)";
+					} else if (now >= self.config.FirstPoint + ":50:00" && now < self.config.FirstPoint + ":59:59") {
+						document.querySelector("body").style.opacity = "0.57";
+						document.querySelector(".fullscreen.below").style.opacity = "0.04";
+						document.querySelector("body").style["-webkit-filter"] = "grayscale(42.85%)";
+					} else if (now >= self.config.SecondPoint + ":00:00" && now < self.config.ThirdPoint + ":00:00") {
+						document.querySelector("body").style.opacity = "0.50";
+						document.querySelector(".fullscreen.below").style.opacity = "0";
+						document.querySelector("body").style["-webkit-filter"] = "grayscale(50%)";
+					}
+
+					if (now >= self.config.ThirdPoint + "00:01" && now < self.config.ThirdPoint + ":09:59") {
+						document.querySelector("body").style.opacity = "0.57";
+						document.querySelector(".fullscreen.below").style.opacity = "0.04";
+						document.querySelector("body").style["-webkit-filter"] = "grayscale(42.85%)";
+					} else if (now >= self.config.ThirdPoint + ":10:00" && now < self.config.ThirdPoint + ":19:59") {
+						document.querySelector("body").style.opacity = "0.64";
+						document.querySelector(".fullscreen.below").style.opacity = "0.08";
+						document.querySelector("body").style["-webkit-filter"] = "grayscale(35.71%)";
+					} else if (now >= self.config.ThirdPoint + ":20:00" && now < self.config.ThirdPoint + ":29:59") {
+						document.querySelector("body").style.opacity = "0.71";
+						document.querySelector(".fullscreen.below").style.opacity = "0.12";
+						document.querySelector("body").style["-webkit-filter"] = "grayscale(28.57%)";
+					} else if (now >= self.config.ThirdPoint + ":30:00" && now < self.config.ThirdPoint + ":39:59") {
+						document.querySelector("body").style.opacity = "0.79";
+						document.querySelector(".fullscreen.below").style.opacity = "0.16";
+						document.querySelector("body").style["-webkit-filter"] = "grayscale(21.42%)";
+					} else if (now >= self.config.ThirdPoint + ":40:00" && now < self.config.ThirdPoint + ":49:59") {
+						document.querySelector("body").style.opacity = "0.86";
+						document.querySelector(".fullscreen.below").style.opacity = "0.2";
+						document.querySelector("body").style["-webkit-filter"] = "grayscale(14.29%)";
+					} else if (now >= self.config.ThirdPoint + ":50:00" && now < self.config.ThirdPoint + ":59:59") {
+						document.querySelector("body").style.opacity = "0.93";
+						document.querySelector(".fullscreen.below").style.opacity = "0.24";
+						document.querySelector("body").style["-webkit-filter"] = "grayscale(7.15%)";
+					} else if (now >= self.config.ForthPoint + ":00:00" && now < self.config.FifthPoint + ":59:59") {
+						document.querySelector("body").style.opacity = "1";
+						document.querySelector(".fullscreen.below").style.opacity = "0.28";
+						document.querySelector("body").style["-webkit-filter"] = "grayscale(0%)";
+					}
+				} else {
+					if (now >= self.config.SecondPoint + ":00:00" && now < self.config.ThirdPoint + ":00:00") {
+						document.querySelector("body").style.opacity = "0.50";
+						document.querySelector(".fullscreen.below").style.opacity = "0";
+						document.querySelector("body").style["-webkit-filter"] = "grayscale(50%)";
+					}
+
+					if (now >= self.config.ThirdPoint + ":00:01" && now < self.config.FifthPoint + ":59:59") {
+						document.querySelector("body").style.opacity = "1";
+						document.querySelector(".fullscreen.below").style.opacity = "0.28";
+						document.querySelector("body").style["-webkit-filter"] = "grayscale(0%)";
+					}
 				}
 			}
 
