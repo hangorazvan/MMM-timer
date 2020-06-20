@@ -40,8 +40,7 @@ Module.register("timer", {
 		setInterval(function() {
 			var now = moment().format("HH:mm:ss"); var hide = moment().format("ss");
 			var date = moment().format("DD-MM mm:ss"); var bodysize = 1080;
-			var body = document.querySelector('body');
-			body.style["min-width"] = bodysize + "px";
+			var body = document.querySelector('body'); body.style["min-width"] = bodysize + "px";
 
 			if (self.config.SharpMode) {
 				if ((now == "23:00:00") || (now == "00:00:00") || (now == "01:00:00")) {
@@ -147,7 +146,6 @@ Module.register("timer", {
 						document.querySelector(".fullscreen.below").style.opacity = "0.04";
 					} else if (now >= self.config.SecondPoint + ":00:00" && now < self.config.ThirdPoint + ":00:00") {
 						body.style.opacity = "0.50"; body.style["-webkit-filter"] = "grayscale(50%)";
-						document.querySelector(".fullscreen.below").style.opacity = "0";
 					}
 
 					if (now >= self.config.ThirdPoint + "00:01" && now < self.config.ThirdPoint + ":09:59") {
@@ -170,17 +168,14 @@ Module.register("timer", {
 						document.querySelector(".fullscreen.below").style.opacity = "0.24";
 					} else if (now >= self.config.ForthPoint + ":00:00" && now < self.config.FifthPoint + ":59:59") {
 						body.style.opacity = "1"; body.style["-webkit-filter"] = "grayscale(0%)";
-						document.querySelector(".fullscreen.below").style.opacity = "0.28";
 					}
 				} else {
 					if (now >= self.config.SecondPoint + ":00:00" && now < self.config.ThirdPoint + ":00:00") {
 						body.style.opacity = "0.50"; body.style["-webkit-filter"] = "grayscale(50%)";
-						document.querySelector(".fullscreen.below").style.opacity = "0";
 					}
 
 					if (now >= self.config.ThirdPoint + ":00:01" && now < self.config.FifthPoint + ":59:59") {
 						body.style.opacity = "1"; body.style["-webkit-filter"] = "grayscale(0%)";
-						document.querySelector(".fullscreen.below").style.opacity = "0.28";
 					}
 				}
 			}
