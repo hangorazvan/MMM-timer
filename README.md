@@ -1,8 +1,8 @@
 # MMM-timer
 MagicMirror 2 Notification alert & timer trigger for my own us
 
-Put in config.js and is working in background.
-All settings are inside of module or add in config.js
+St in config.js and is working in background.
+All settings are inside of module or in config.js
 
 	{
 		module: "timer",
