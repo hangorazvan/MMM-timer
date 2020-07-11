@@ -10,7 +10,7 @@ All settings are inside of module or in config.js
 			SharpMode: true,	// hourly alert notification
 			DateMode: true,		// specific date hourly alert notification
 			FadeMode: true,		// fade to dimmed mode over night and back in the morning
-			NightMode: false,	// zoomed night mode for iPad
+			NightMode: true,	// zoomed night mode for iPad
 			Background: true,	// Background image set for .fullscreen.below in css file
 			FirstPoint: "23",	// time of fade start increase
 			SecondPoint: "00",	// time of fade stop increase and night mode start
