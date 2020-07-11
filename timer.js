@@ -9,7 +9,7 @@ Module.register("timer", {
 		SharpMode: true,	// hourly alert notification
 		DateMode: true,		// specific date hourly alert notification
 		FadeMode: true,		// fade to dimmed mode over night and back in the morning
-		NightMode: false,	// zoomed night mode for iPad
+		NightMode: true,	// zoomed night mode for iPad
 		Background: true,	// Background image set for .fullscreen.below in css file
 		FirstPoint: "23",	// time of fade start increase
 		SecondPoint: "00",	// time of fade stop increase and night mode start
@@ -18,10 +18,6 @@ Module.register("timer", {
 		FifthPoint: "22",	// time of day mode stop
 	},
 	
-	getStyles: function() {
-		return [];
-	},
-
 	getScripts: function() {
 		return ["moment.js"];
 	},
@@ -40,7 +36,8 @@ Module.register("timer", {
 		setInterval(function() {
 			var now = moment().format("HH:mm:ss"); var hide = moment().format("ss");
 			var date = moment().format("DD-MM mm:ss"); var bodysize = 1080;
-			var body = document.querySelector('body'); body.style["min-width"] = bodysize + "px";
+			var body = document.querySelector('body');
+			body.style["min-width"] = bodysize + "px";
 
 			if (self.config.SharpMode) {
 				if ((now == "23:00:00") || (now == "00:00:00") || (now == "01:00:00")) {
@@ -73,7 +70,7 @@ Module.register("timer", {
 			}
 			
 			if ((hide == "16") || (hide == "31") || (hide == "46")) {
-				self.sendNotification("HIDE_ALERT");
+				self.sendNotification("HIDE_ALERT"); // in any event
 			}
 
 			if (self.config.NightMode) {
@@ -82,7 +79,8 @@ Module.register("timer", {
 						body.style.transform = "scale(" + window.innerWidth / bodysize * 1.5 + ")";
 						document.querySelector(".calendar").style.display = "none";
 						document.querySelector(".monthly").style.display = "none";
-						document.querySelector(".forecast").style.display = "none";
+						document.querySelector(".hourly").style.display = "none"; // forecast
+						document.querySelector(".dailly").style.display = "none"; // forecast
 						document.querySelector(".rssnews").style.display = "none";
 						document.querySelector(".weather").classList.add("wscaled");
 						document.querySelector(".pre-line").classList.add("cscaled");
@@ -90,7 +88,8 @@ Module.register("timer", {
 						body.style.transform = "scale(" + window.innerWidth / bodysize + ")";
 						document.querySelector(".calendar").style.display = "inherit";
 						document.querySelector(".monthly").style.display = "inherit";
-						document.querySelector(".forecast").style.display = "inherit";
+						document.querySelector(".hourly").style.display = "inherit"; // forecast
+						document.querySelector(".dailly").style.display = "inherit"; // forecast
 						document.querySelector(".rssnews").style.display = "inherit";
 						document.querySelector(".weather").classList.remove("wscaled");
 						document.querySelector(".pre-line").classList.remove("cscaled");
@@ -99,7 +98,8 @@ Module.register("timer", {
 					body.style.transform = "scale(1)";
 					document.querySelector(".calendar").style.display = "inherit";
 					document.querySelector(".monthly").style.display = "inherit";
-					document.querySelector(".forecast").style.display = "inherit";
+					document.querySelector(".hourly").style.display = "inherit"; // forecast
+					document.querySelector(".dailly").style.display = "inherit"; // forecast
 					document.querySelector(".rssnews").style.display = "inherit";
 					document.querySelector(".weather").classList.remove("wscaled");
 					document.querySelector(".pre-line").classList.remove("cscaled");
