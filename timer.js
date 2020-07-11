@@ -70,17 +70,17 @@ Module.register("timer", {
 			}
 			
 			if ((hide == "16") || (hide == "31") || (hide == "46")) {
-				self.sendNotification("HIDE_ALERT"); // in any event
+				self.sendNotification("HIDE_ALERT");
 			}
 
 			if (self.config.NightMode) {
 				if (window.innerWidth < bodysize){
 					if ((now >= self.config.FirstPoint + ":00:00" && now < self.config.FirstPoint + ":59:59") || (now >= self.config.SecondPoint + ":00:00" && now < self.config.ThirdPoint + ":59:59")) {
-						body.style.transform = "scale(" + window.innerWidth / bodysize * 1.5 + ")";
+						body.style.transform = "scale(" + window.innerWidth / bodysize * 1.55 + ")";
 						document.querySelector(".calendar").style.display = "none";
 						document.querySelector(".monthly").style.display = "none";
-						document.querySelector(".hourly").style.display = "none"; // forecast
-						document.querySelector(".dailly").style.display = "none"; // forecast
+						document.querySelector(".hourly").style.display = "none";
+						document.querySelector(".dailly").style.display = "none";
 						document.querySelector(".rssnews").style.display = "none";
 						document.querySelector(".weather").classList.add("wscaled");
 						document.querySelector(".pre-line").classList.add("cscaled");
@@ -88,8 +88,8 @@ Module.register("timer", {
 						body.style.transform = "scale(" + window.innerWidth / bodysize + ")";
 						document.querySelector(".calendar").style.display = "inherit";
 						document.querySelector(".monthly").style.display = "inherit";
-						document.querySelector(".hourly").style.display = "inherit"; // forecast
-						document.querySelector(".dailly").style.display = "inherit"; // forecast
+						document.querySelector(".hourly").style.display = "inherit";
+						document.querySelector(".dailly").style.display = "inherit";
 						document.querySelector(".rssnews").style.display = "inherit";
 						document.querySelector(".weather").classList.remove("wscaled");
 						document.querySelector(".pre-line").classList.remove("cscaled");
@@ -98,8 +98,8 @@ Module.register("timer", {
 					body.style.transform = "scale(1)";
 					document.querySelector(".calendar").style.display = "inherit";
 					document.querySelector(".monthly").style.display = "inherit";
-					document.querySelector(".hourly").style.display = "inherit"; // forecast
-					document.querySelector(".dailly").style.display = "inherit"; // forecast
+					document.querySelector(".hourly").style.display = "inherit";
+					document.querySelector(".dailly").style.display = "inherit";
 					document.querySelector(".rssnews").style.display = "inherit";
 					document.querySelector(".weather").classList.remove("wscaled");
 					document.querySelector(".pre-line").classList.remove("cscaled");
