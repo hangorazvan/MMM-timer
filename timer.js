@@ -14,9 +14,9 @@ Module.register("timer", {
 		SecondPoint: "00", // time of fade stop increase and night mode start
 		ThirdPoint: "06", // time of fade start decrease
 		ForthPoint: "07", // time of fade mode stop decrease and day mode start
-		FifthPoint: "22", // time of day mode stop
+		FifthPoint: "22", // time of day mode stop},
 	},
-	
+
 	getScripts: function() {
 		return ["moment.js"];
 	},
@@ -35,8 +35,7 @@ Module.register("timer", {
 		setInterval(function() {
 			var now = moment().format("HH:mm:ss"); var hide = moment().format("ss");
 			var date = moment().format("DD-MM mm:ss"); var bodysize = 1080;
-			var body = document.querySelector('body');
-			body.style["min-width"] = bodysize + "px";
+			var body = document.querySelector('body'); body.style["min-width"] = bodysize + "px";
 
 			if (self.config.SharpMode) {
 				if ((now == "23:00:00") || (now == "00:00:00") || (now == "01:00:00")) {
@@ -74,8 +73,10 @@ Module.register("timer", {
 
 			if (self.config.NightMode) {
 				var dqs1 = Array.from(document.querySelectorAll(".calendar, .dailly, .rssnews"));
-				var dqs2 = Array.from(document.querySelectorAll(".wicon")); var dqs3 = Array.from(document.querySelectorAll(".wtemp"));
-				var dqs4 = document.querySelector(".weather"); var dqs5 = document.querySelector(".pre-line");
+				var dqs2 = Array.from(document.querySelectorAll(".wicon"));
+				var dqs3 = Array.from(document.querySelectorAll(".wtemp"));
+				var dqs4 = document.querySelector(".weather");
+				var dqs5 = document.querySelector(".pre-line");
 
 				if (window.innerWidth < bodysize) {
 					if ((now >= self.config.FirstPoint + ":00:00" && now < self.config.FirstPoint + ":59:59") || (now >= self.config.SecondPoint + ":00:00" && now < self.config.ThirdPoint + ":59:59")) {
@@ -103,7 +104,7 @@ Module.register("timer", {
 				}
 
 			} else {
-				if (window.innerWidth < bodysize){
+				if (window.innerWidth < bodysize) {
 					body.style.transform = "scale(" + window.innerWidth / bodysize + ")";
 				} else {
 					body.style.transform = "scale(1)";
@@ -176,7 +177,6 @@ Module.register("timer", {
 					}
 				}
 			}
-
 		}, 1000);
 	},
 });
