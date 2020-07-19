@@ -98,7 +98,6 @@ Module.register("timer", {
 					} 
 				} else {
 					body.style.transform = "scale(1)";
-					document.querySelector(".monthly").style.display = "table";
 					dqs1.forEach(function(element) {element.style.display = "initial"});
 					dqs2.forEach(function(element) {element.style.float = "left"});
 					dqs3.forEach(function(element) {element.style["margin-left"] = "0"});
@@ -115,12 +114,12 @@ Module.register("timer", {
 
 			if (self.config.Background) {
 				if (now >= self.config.SecondPoint + ":00:00" && now < self.config.ThirdPoint + ":00:00") {
-					fsa.forEach(function(element) {element.style.display = "none"});
+					fsa.forEach(function(element) {element.style.backgound = "transparent"});
 				} else {
-					fsba.forEach(function(element) {element.style.display = "initial"});
+					fsba.forEach(function(element) {element.style.background = "transparent url("/../css/earth.png") no-repeat center"});
 				}
 			} else {
-				fsba.forEach(function(element) {element.style.display = "none"});
+				fsba.forEach(function(element) {element.style.background = "transparent"});
 			}
 
 			if (self.config.DimMode) {
