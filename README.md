@@ -19,3 +19,13 @@ All settings are inside of module or in config.js
 			FifthPoint: "22",	// time of day mode stop
 		}
 	},
+	
+For custom background this put in main.css
+	
+	.fullscreen.below {
+		background: transparent;
+		background-size: cover;
+		opacity: 0.3;
+		width: 100%;
+		height: 100%;
+	}
