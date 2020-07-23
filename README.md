@@ -12,6 +12,8 @@ All settings are inside of module or in config.js
 			FadeMode: true,		// fade to dimmed mode over night and back in the morning
 			NightMode: true,	// zoomed night mode for iPad
 			Background: true,	// Background image set for .fullscreen.below in css file
+			Reload: false,		// Reload page
+			Reinit: false,		// Reinitialised
 			FirstPoint: "23",	// time of fade start increase
 			SecondPoint: "00",	// time of fade stop increase and night mode start
 			ThirdPoint: "06",	// time of fade start decrease
