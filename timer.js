@@ -11,6 +11,8 @@ Module.register("timer", {
 		FadeMode: true,		// fade to dimmed mode over night and back in the morning
 		NightMode: true,	// zoomed night mode for iPad
 		Background: true,	// Background image set for .fullscreen.below in css file
+		Reload: false,
+		Reinit: false,
 		FirstPoint: "23",	// time of fade start increase
 		SecondPoint: "00",	// time of fade stop increase and night mode start
 		ThirdPoint: "06",	// time of fade start decrease
@@ -43,6 +45,18 @@ Module.register("timer", {
 			var dqs5 = document.querySelector(".pre-line");
 			var dqs6 = document.querySelector(".monthly");
 			var fsba = Array.from(document.querySelectorAll(".fullscreen.below"));
+			
+			if (self.config.Reload) {
+				if (now == "00:00:00") {
+					location.reload();
+				}
+			}
+
+			if (self.config.Reinit) {
+				if (now == "00:00:00") {
+					MM.init();
+				}
+			}
 
 			if (self.config.SharpMode) {
 				if ((now == "23:00:00") || (now == "00:00:00") || (now == "01:00:00")) {
