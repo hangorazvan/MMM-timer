@@ -37,14 +37,15 @@ Module.register("timer", {
 		setInterval(function() {
 			var now = moment().format("HH:mm:ss"); var hide = moment().format("ss");
 			var date = moment().format("DD-MM mm:ss"); var bodysize = 1080;
-			var body = document.querySelector("body"); body.style["min-width"] = bodysize + "px";
 			var dqs1 = Array.from(document.querySelectorAll(".calendar, .dailly, .rssnews"));
-			var dqs2 = Array.from(document.querySelectorAll(".wicon")); 
+			var dqs2 = Array.from(document.querySelectorAll(".wicon"));
 			var dqs3 = Array.from(document.querySelectorAll(".wtemp"));
-			var dqs4 = document.querySelector(".weather"); 
-			var dqs5 = document.querySelector(".pre-line");
-			var dqs6 = document.querySelector(".monthly");
+			var dqs4 = Array.from(document.querySelectorAll(".weather"));
+			var dqs5 = Array.from(document.querySelectorAll(".pre-line"));
+			var dqs6 = Array.from(document.querySelectorAll(".monthly"));
 			var fsba = Array.from(document.querySelectorAll(".fullscreen.below"));
+			var body = Array.from(document.querySelectorAll("body"));
+			body.forEach(function(element) {element.style["min-width"] = bodysize + "px"});
 
 			if (self.config.Reload) {
 				if (now == "00:00:00") {
@@ -95,33 +96,39 @@ Module.register("timer", {
 			if (self.config.NightMode) {
 				if (window.innerWidth < bodysize) {
 					if ((now >= self.config.FirstPoint + ":00:00" && now < self.config.FirstPoint + ":59:59") || (now >= self.config.SecondPoint + ":00:00" && now < "05:59:59")) {
-						body.style.transform = "scale(" + window.innerWidth / bodysize * 1.55 + ")";
+						body.forEach(function(element) {element.style.transform = "scale(" + window.innerWidth / bodysize * 1.55 + ")"});
 						dqs1.forEach(function(element) {element.style.display = "none"});
 						dqs2.forEach(function(element) {element.style.float = "right"});
 						dqs3.forEach(function(element) {element.style["margin-left"] = "-25px"});
-						dqs4.classList.add("wscaled"); dqs5.classList.add("cscaled");
-						dqs6.style.display = "none";
+						dqs4.forEach(function(element) {element.style.position = "relative", element.style.left = "-750px",
+						element.style.top = "280px", element.style["text-align"] = "left"});
+						dqs5.forEach(function(element) {element.style.position = "relative", 
+						element.style.left = "395px", element.style.top = "-180px", element.style["font-size"] = "3.5rem",
+						element.style["line-height"] = "4rem", element.style.width = "300px"});
+						dqs6.forEach(function(element) {element.style.display = "none"});
 					} else if (now >= self.config.ThirdPoint + ":00:00" && now < self.config.FifthPoint + ":59:59") {
-						body.style.transform = "scale(" + window.innerWidth / bodysize + ")";
+						body.forEach(function(element) {element.style.transform = "scale(" + window.innerWidth / bodysize + ")"});
 						dqs1.forEach(function(element) {element.style.display = "initial"});
 						dqs2.forEach(function(element) {element.style.float = "left"});
 						dqs3.forEach(function(element) {element.style["margin-left"] = "0"});
-						dqs4.classList.remove("wscaled"); dqs5.classList.remove("cscaled"); 
-						dqs6.style.display = "table";
+						dqs4.forEach(function(element) {element.style.all = "initial"});
+						dqs5.forEach(function(element) {element.style.all = "initial"});
+						dqs6.forEach(function(element) {element.style.display = "table"});
 					} 
 				} else {
-					body.style.transform = "scale(1)";
+					body.forEach(function(element) {element.style.transform = "scale(1)"});
 					dqs1.forEach(function(element) {element.style.display = "initial"});
 					dqs2.forEach(function(element) {element.style.float = "left"});
 					dqs3.forEach(function(element) {element.style["margin-left"] = "0"});
-					dqs4.classList.remove("wscaled"); dqs5.classList.remove("cscaled");
-					dqs6.style.display = "table";
+					dqs4.forEach(function(element) {element.style.all = "initial"});
+					dqs5.forEach(function(element) {element.style.all = "initial"});
+					dqs6.forEach(function(element) {element.style.display = "table"});
 				}
 			} else {
 				if (window.innerWidth < bodysize){
-					body.style.transform = "scale(" + window.innerWidth / bodysize + ")";
+					body.forEach(function(element) {element.style.transform = "scale(" + window.innerWidth / bodysize + ")"});
 				} else {
-					body.style.transform = "scale(1)";
+					body.forEach(function(element) {element.style.transform = "scale(1)"});
 				}
 			}
 
@@ -138,39 +145,39 @@ Module.register("timer", {
 			if (self.config.DimMode) {
 				if (self.config.FadeMode) {
 					if (now >= self.config.FirstPoint + "00:00" && now < self.config.FirstPoint + ":09:59") {
-						body.style.opacity = "0.93"; body.style.filter = "grayscale(7.15%)";
+						body.forEach(function(element) {element.style.opacity = "0.93", element.style.filter = "grayscale(7.15%)"});
 					} else if (now >= self.config.FirstPoint + ":10:00" && now < self.config.FirstPoint + ":19:59") {
-						body.style.opacity = "0.86"; body.style.filter = "grayscale(14.29%)";
+						body.forEach(function(element) {element.style.opacity = "0.86", element.style.filter = "grayscale(14.29%)"});
 					} else if (now >= self.config.FirstPoint + ":20:00" && now < self.config.FirstPoint + ":29:59") {
-						body.style.opacity = "0.79"; body.style.filter = "grayscale(21.42%)";
+						body.forEach(function(element) {element.style.opacity = "0.79", element.style.filter = "grayscale(21.42%)"});
 					} else if (now >= self.config.FirstPoint + ":30:00" && now < self.config.FirstPoint + ":39:59") {
-						body.style.opacity = "0.71"; body.style.filter = "grayscale(28.57%)";
+						body.forEach(function(element) {element.style.opacity = "0.71", element.style.filter = "grayscale(28.57%)"});
 					} else if (now >= self.config.FirstPoint + ":40:00" && now < self.config.FirstPoint + ":49:59") {
-						body.style.opacity = "0.64"; body.style.filter = "grayscale(35.71%)";
+						body.forEach(function(element) {element.style.opacity = "0.64", element.style.filter = "grayscale(35.71%)"});
 					} else if (now >= self.config.FirstPoint + ":50:00" && now < self.config.FirstPoint + ":59:59") {
-						body.style.opacity = "0.57"; body.style.filter = "grayscale(42.85%)";
+						body.forEach(function(element) {element.style.opacity = "0.57", element.style.filter = "grayscale(42.85%)"});
 					} else if (now >= self.config.SecondPoint + ":00:00" && now < self.config.ThirdPoint + ":00:00") {
-						body.style.opacity = "0.50"; body.style.filter = "grayscale(50%)";
+						body.forEach(function(element) {element.style.opacity = "0.50", element.style.filter = "grayscale(50%)"});
 					} else if (now >= self.config.ThirdPoint + "00:01" && now < self.config.ThirdPoint + ":09:59") {
-						body.style.opacity = "0.57"; body.style.filter = "grayscale(42.85%)";
+						body.forEach(function(element) {element.style.opacity = "0.57", element.style.filter = "grayscale(42.85%)"});
 					} else if (now >= self.config.ThirdPoint + ":10:00" && now < self.config.ThirdPoint + ":19:59") {
-						body.style.opacity = "0.64"; body.style.filter = "grayscale(35.71%)";
+						body.forEach(function(element) {element.style.opacity = "0.64", element.style.filter = "grayscale(35.71%)"});
 					} else if (now >= self.config.ThirdPoint + ":20:00" && now < self.config.ThirdPoint + ":29:59") {
-						body.style.opacity = "0.71"; body.style.filter = "grayscale(28.57%)";
+						body.forEach(function(element) {element.style.opacity = "0.71", element.style.filter = "grayscale(28.57%)"});
 					} else if (now >= self.config.ThirdPoint + ":30:00" && now < self.config.ThirdPoint + ":39:59") {
-						body.style.opacity = "0.79"; body.style.filter = "grayscale(21.42%)";
+						body.forEach(function(element) {element.style.opacity = "0.79", element.style.filter = "grayscale(21.42%)"});
 					} else if (now >= self.config.ThirdPoint + ":40:00" && now < self.config.ThirdPoint + ":49:59") {
-						body.style.opacity = "0.86"; body.style.filter = "grayscale(14.29%)";
+						body.forEach(function(element) {element.style.opacity = "0.86", element.style.filter = "grayscale(14.29%)"});
 					} else if (now >= self.config.ThirdPoint + ":50:00" && now < self.config.ThirdPoint + ":59:59") {
-						body.style.opacity = "0.93"; body.style.filter = "grayscale(7.15%)";
+						body.forEach(function(element) {element.style.opacity = "0.93", element.style.filter = "grayscale(7.15%)"});
 					} else if (now >= self.config.ForthPoint + ":00:00" && now < self.config.FifthPoint + ":59:59") {
-						body.style.opacity = "1"; body.style.filter = "grayscale(0%)";
+						body.forEach(function(element) {element.style.opacity = "1", element.style.filter = "grayscale(0%)"});
 					}
 				} else {
 					if (now >= self.config.SecondPoint + ":00:00" && now < self.config.ThirdPoint + ":00:00") {
-						body.style.opacity = "0.50"; body.style.filter = "grayscale(50%)";
+						body.forEach(function(element) {element.style.opacity = "0.50", element.style.filter = "grayscale(50%)"});
 					} else if (now >= self.config.ThirdPoint + ":00:01" && now < self.config.FifthPoint + ":59:59") {
-						body.style.opacity = "1"; body.style.filter = "grayscale(0%)";
+						body.forEach(function(element) {element.style.opacity = "1", element.style.filter = "grayscale(0%)"});
 					}
 				}
 			}
