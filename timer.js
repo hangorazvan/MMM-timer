@@ -108,18 +108,18 @@ Module.register("timer", {
 						dqs6.forEach(function(element) {element.style.display = "none"});
 					} else if (now >= self.config.ThirdPoint + ":00:00" && now < self.config.FifthPoint + ":59:59") {
 						body.forEach(function(element) {element.style.transform = "scale(" + window.innerWidth / bodysize + ")"});
-						dqs1.forEach(function(element) {element.style.display = "initial"});
-						dqs2.forEach(function(element) {element.style.float = "left"});
-						dqs3.forEach(function(element) {element.style["margin-left"] = "0"});
+						dqs1.forEach(function(element) {element.style.all = "initial"});
+						dqs2.forEach(function(element) {element.style.all = "initial"});
+						dqs3.forEach(function(element) {element.style.all = "initial"});
 						dqs4.forEach(function(element) {element.style.all = "initial"});
 						dqs5.forEach(function(element) {element.style.all = "initial"});
 						dqs6.forEach(function(element) {element.style.display = "table"});
 					} 
 				} else {
 					body.forEach(function(element) {element.style.transform = "scale(1)"});
-					dqs1.forEach(function(element) {element.style.display = "initial"});
-					dqs2.forEach(function(element) {element.style.float = "left"});
-					dqs3.forEach(function(element) {element.style["margin-left"] = "0"});
+					dqs1.forEach(function(element) {element.style.all = "initial"});
+					dqs2.forEach(function(element) {element.style.all = "initial"});
+					dqs3.forEach(function(element) {element.style.all = "initial"});
 					dqs4.forEach(function(element) {element.style.all = "initial"});
 					dqs5.forEach(function(element) {element.style.all = "initial"});
 					dqs6.forEach(function(element) {element.style.display = "table"});
