@@ -118,11 +118,11 @@ Module.register("timer", {
 
 			if (self.config.DimMode) { if (self.config.FadeMode) {
 					if (now >= self.config.FirstPoint + "00:00" && now < self.config.FirstPoint + ":59:59") {
-						body.forEach(function(element) {return element.style.opacity = opac1, element.style.filter = "grayscale("+ gray1 +"%)";});
+						body.forEach(function(element) {return element.style.opacity = opac1, element.style.filter = "grayscale("+gray1+"%)";});
 					} else if (now >= self.config.SecondPoint + ":00:00" && now < self.config.ThirdPoint + ":00:00") {
 						body.forEach(function(element) {return element.style.opacity = "0.50", element.style.filter = "grayscale(50%)";});
 				    } else if (now >= self.config.ThirdPoint + "00:01" && now < self.config.ThirdPoint + ":59:59") {
-						body.forEach(function(element) {return element.style.opacity = opac2, element.style.filter = "grayscale("+ gray2 +"%)";});
+						body.forEach(function(element) {return element.style.opacity = opac2, element.style.filter = "grayscale("+gray2+"%)";});
 					} else if (now >= self.config.ForthPoint + ":00:00" && now < self.config.FifthPoint + ":59:59") {
 						body.forEach(function(element) {return element.style.opacity = "1", element.style.filter = "grayscale(0%)";});
 					}
