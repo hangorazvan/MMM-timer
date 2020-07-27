@@ -146,7 +146,7 @@ Module.register("timer", {
 					} else if (now >= self.config.ThirdPoint + ":00:00" && now < self.config.FifthPoint + ":59:59") {
 						body.forEach(function(element) {element.style.transform = "scale(" + window.innerWidth / bodysize + ")";});
 //						MM.getModules().enumerate(function (calendar) {calendar.show(0, { lockString: "timer" });});
-						dqs1.forEach(function(element) {element.style.display = "initial"});
+						dqs1.forEach(function(element) {element.style.display = "initial";});
 						dqs2.forEach(function(element) {element.style.float = "left";});
 						dqs3.forEach(function(element) {element.style["margin-left"] = "initial";});
 						dqs4.forEach(function(element) {return element.style.position = "initial", element.style.left = "initial",
