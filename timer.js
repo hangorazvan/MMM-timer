@@ -6,21 +6,25 @@
 
 Module.register("timer", {
 	defaults: {
-		SharpMode: true,	// hourly alert notification
-		DateMode: true,		// specific date hourly alert notification
-		FadeMode: true,		// fade to dimmed mode over night and back in the morning
-		DimMode: true,		// Dimmed mode over night
-		NightMode: true,	// zoomed night mode for iPad
-		Background: false,	// Background image set for .fullscreen.below in css file
-		Reload: false,		// Reload page
-		Reinit: false,		// Reinitialised
-		FirstPoint: "23",	// time of fade start increase
-		SecondPoint: "00",	// time of fade stop increase and night mode start
-		ThirdPoint: "06",	// time of fade start decrease
-		ForthPoint: "07",	// time of fade mode stop decrease and day mode start
-		FifthPoint: "22",	// time of day mode stop
-		Name1: "Paula!",
-		Name2: "Răzvan!",
+		SharpMode: true,		// hourly alert notification
+		DateMode: true,			// specific date hourly alert notification
+		FadeMode: true,			// fade to dimmed mode over night and back in the morning
+		DimMode: true,			// dimmed mode over night
+		NightMode: true,		// zoomed night mode for iPad 3
+		Background: false,		// background image set for .fullscreen.below in css file
+		Reload: false,			// reload page
+		Reinit: false,			// reinitialised MM
+		FirstPoint: "23",		// time of fade start increase
+		SecondPoint: "00",		// time of fade stop increase and night mode start
+		ThirdPoint: "06",		// time of fade start decrease and day mode start
+		ForthPoint: "07",		// time of fade mode stop decrease
+		FifthPoint: "22",		// time of day mode stop
+		Name1: "Paula!",		// Wife or girlfriend name
+		Birthday1: "22-08",		// day & month
+		Name2: "Răzvan!",		// Husband or boyfriend name
+		Birthday2: "13-10",		// day & month
+		Name3: "",				// child or pet name
+		Birthday3: "",			// day & month
 	},
 	
 	getTranslations: function() {
@@ -63,33 +67,33 @@ Module.register("timer", {
 			if (self.config.SharpMode) {
 				if ((now == "23:00:00") || (now == "00:00:00") || (now == "01:00:00")) {
 					self.sendNotification("SHOW_ALERT", {
-						type: "notification", title: self.translate("<i class=\"far fa-bell lime\"></i> Ora exactă!"),
-						message: self.translate("A fost ora ") + moment().format("H:mm") + "<br>" + self.translate("Noapte bună!")
+						type: "notification", title: self.translate("<i class=\"far fa-bell lime\"></i> Sharp hour!"),
+						message: self.translate("Time it was ") + moment().format("H:mm") + "<br>" + self.translate("Good night!")
 					});
 				} else if ((now == "02:00:00") || (now == "03:00:00") || (now == "04:00:00")) {
 					self.sendNotification("SHOW_ALERT", {
-						type: "notification", title: self.translate("<i class=\"far fa-bell lime\"></i> Ora exactă!"),
-						message: self.translate("A fost ora ") + moment().format("H:mm") + "<br>" + self.translate("Somn ușor!")
+						type: "notification", title: self.translate("<i class=\"far fa-bell lime\"></i> Sharp hour!"),
+						message: self.translate("Time it was ") + moment().format("H:mm") + "<br>" + self.translate("Sleep well!")
 					});
 				} else if ((now == "05:00:00") || (now == "06:00:00") || (now == "07:00:00") || (now == "08:00:00") || (now == "09:00:00") || (now == "10:00:00") || (now == "11:00:00")) {
 					self.sendNotification("SHOW_ALERT", {
-						type: "notification", title: self.translate("<i class=\"far fa-bell lime\"></i> Ora exactă!"),
-						message: self.translate("A fost ora ") + moment().format("H:mm") + "<br>" + self.translate("Bună dimineața!")
+						type: "notification", title: self.translate("<i class=\"far fa-bell lime\"></i> Sharp hour!"),
+						message: self.translate("Time it was ") + moment().format("H:mm") + "<br>" + self.translate("Good morning!")
 					});
 				} else if ((now == "12:00:00") || (now == "13:00:00") || (now == "14:00:00")) {
 					self.sendNotification("SHOW_ALERT", {
-						type: "notification", title: self.translate("<i class=\"far fa-bell lime\"></i> Ora exactă!"),
-						message: self.translate("A fost ora ") + moment().format("H:mm") + "<br>" + self.translate("Poftă bună!")
+						type: "notification", title: self.translate("<i class=\"far fa-bell lime\"></i> Sharp hour!"),
+						message: self.translate("Time it was ") + moment().format("H:mm") + "<br>" + self.translate("Bon appetit!")
 					});
 				} else if ((now == "15:00:00") || (now == "16:00:00") || (now == "17:00:00")) {
 					self.sendNotification("SHOW_ALERT", {
-						type: "notification", title: self.translate("<i class=\"far fa-bell lime\"></i> Ora exactă!"),
-						message: self.translate("A fost ora ") + moment().format("H:mm") + "<br>" + self.translate("O zi cât mai bună!")
+						type: "notification", title: self.translate("<i class=\"far fa-bell lime\"></i> Sharp hour!"),
+						message: self.translate("Time it was ") + moment().format("H:mm") + "<br>" + self.translate("Have a nice day!")
 					});
 				} else if ((now == "18:00:00") || (now == "19:00:00") || (now == "20:00:00") || (now == "21:00:00") || (now == "22:00:00")) {
 					self.sendNotification("SHOW_ALERT", {
-						type: "notification", title: self.translate("<i class=\"far fa-bell lime\"></i> Ora exactă!"),
-						message: self.translate("A fost ora ") + moment().format("H:mm") + "<br>" + self.translate("O seară plăcută!")
+						type: "notification", title: self.translate("<i class=\"far fa-bell lime\"></i> Sharp hour!"),
+						message: self.translate("Time it was ") + moment().format("H:mm") + "<br>" + self.translate("Have a nice evening!")
 					});
 				}
 			}
@@ -99,27 +103,32 @@ Module.register("timer", {
 					self.sendNotification("SHOW_ALERT", {
 						type: "notification", timer: 9000, 
 						title: self.translate("<i class=\"fa fa-gifts yellow\"></i> Crăciun fericit!"),
-						message: self.translate("Sărbători fericite cu multe bucurii!")
+						message: self.translate("Happy holidays with many joys!")
 					});
 				} else if ((date == "01-01 00:06") || (date == "02-01 00:06")) {
 					self.sendNotification("SHOW_ALERT", {
 						type: "notification", timer: 9000, title: self.translate("<i class=\"fa fa-glass-cheers yellow\"></i> La mulți ani ") + moment().format("YYYY") + "!",
-						message: self.translate("Un an nou cât mai bun și multă sănătate!")
-					});
-				} else if (date == "22-08 00:06") {
-					self.sendNotification("SHOW_ALERT", {
-						type: "notification", timer: 9000, title: self.translate("<i class=\"fa fa-birthday-cake yellow\"></i> La mulți ani, ") + self.config.Name1,
-						message: self.translate("Multă sănătate și să fi fericită!")
-					});
-				} else if (date == "13-10 00:06") {
-					self.sendNotification("SHOW_ALERT", {
-						type: "notification", timer: 9000, title: self.translate("<i class=\"fa fa-birthday-cake yellow\"></i> La mulți ani, ") + self.config.Name2,
-						message: self.translate("Multă sănătate și să fi fericit!")
+						message: self.translate("A new year as good as possible and good health!")
 					});
 				} else if (date == "14-02 00:06") {
 					self.sendNotification("SHOW_ALERT", {
 						type: "notification", timer: 9000, title: self.translate("<i class=\"far fa-heart redrf\"></i> Happy Valentine's Day!"),
-						message: self.translate("La mulți ani și multă fericire!")
+						message: self.translate("Happy Valentine's and much happiness!")
+					});
+				} else if (date == self.config.Birthday1 + " 00:06") {
+					self.sendNotification("SHOW_ALERT", {
+						type: "notification", timer: 9000, title: self.translate("<i class=\"fa fa-birthday-cake yellow\"></i> La mulți ani, ") + self.config.Name1,
+						message: self.translate("Good health and be happy! [F]")
+					});
+				} else if (date == self.config.Birthday2 + " 00:06") {
+					self.sendNotification("SHOW_ALERT", {
+						type: "notification", timer: 9000, title: self.translate("<i class=\"fa fa-birthday-cake yellow\"></i> La mulți ani, ") + self.config.Name2,
+						message: self.translate("Good health and be happy! [M]")
+					});
+				} else if (date == self.config.Birthday3 + " 00:06") {
+					self.sendNotification("SHOW_ALERT", {
+						type: "notification", timer: 9000, title: self.translate("<i class=\"fa fa-birthday-cake yellow\"></i> La mulți ani, ") + self.config.Name3,
+						message: self.translate("Good health and be happy! [M]")
 					});
 				}
 			}
