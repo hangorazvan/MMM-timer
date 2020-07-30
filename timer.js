@@ -23,7 +23,7 @@ Module.register("timer", {
 		Birthday1: "22-08",		// day & month
 		Name2: "Răzvan!",		// Husband or boyfriend name
 		Birthday2: "13-10",		// day & month
-		Name3: "",			// child or pet name
+		Name3: "",				// child or pet name
 		Birthday3: "",			// day & month
 	},
 	
