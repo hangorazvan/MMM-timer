@@ -24,7 +24,7 @@ All settings are inside of module or in config.js
 			Birthday1: "22-08",		// day & month
 			Name2: "Răzvan!",		// Husband or boyfriend name
 			Birthday2: "13-10",		// day & month
-			Name3: "",				// child or pet name
+			Name3: "",			// child or pet name
 			Birthday3: "",			// day & month
 		}
 	},
