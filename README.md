@@ -7,6 +7,7 @@ All settings are inside of module or in config.js
 	{
 		module: "timer",
 		config: {
+			Bodysize: 1080,			// Minimum window width
 			SharpMode: true,		// hourly alert notification
 			DateMode: true,			// specific date hourly alert notification
 			FadeMode: true,			// fade to dimmed mode over night and back in the morning
