@@ -24,7 +24,7 @@ Module.register("timer", {
 		Birthday1: "22-08",		// day & month
 		Name2: "Răzvan!",		// Husband or boyfriend name
 		Birthday2: "13-10",		// day & month
-		Name3: "",				// child or pet name
+		Name3: "",			// child or pet name
 		Birthday3: "",			// day & month
 	},
 	
@@ -40,7 +40,7 @@ Module.register("timer", {
 
 		setInterval(function() {
 			var now = moment().format("HH:mm:ss"); var hide = moment().format("ss");
-			var gray1 = moment().format("m")*0.83333333333333;
+			var gray1 = moment().format("m") * 0.833333333333;
 			var opac1 = 1-(gray1-1)/100; var gray2 = 50-gray1;
 			var opac2 = 0.5+gray1/100; var date = moment().format("DD-MM mm:ss");
 			var dqs1 = Array.from(document.querySelectorAll(".calendar, .dailly, .rssnews"));
