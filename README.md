@@ -30,7 +30,7 @@ All settings are inside of module or in config.js
 		}
 	},
 	
-For custom background put this in main.css
+For custom background put this in custom.css
 	
 	.fullscreen.below {
 		background: transparent;
