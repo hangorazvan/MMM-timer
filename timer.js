@@ -139,7 +139,7 @@ Module.register("timer", {
 						dqs4.forEach(function(element) {return element.style.position = "relative", element.style.left = "-750px",
 						element.style.top = "280px", element.style["text-align"] = "left";});
 						dqs5.forEach(function(element) {return element.style.position = "relative",
-						element.style.left = "395px", element.style.top = "-180px", element.style["font-size"] = "3.5rem",
+						element.style.left = "395px", element.style.top = "-170px", element.style["font-size"] = "3.5rem",
 						element.style["line-height"] = "4rem", element.style.width = "300px";});
 						dqs6.forEach(function(element) {element.style.display = "none";});
 					} else if (now >= self.config.ThirdPoint + ":00:01" && now < self.config.FirstPoint + ":59:59") {
