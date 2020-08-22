@@ -40,9 +40,8 @@ Module.register("timer", {
 
 		setInterval(function() {
 			var now = moment().format("HH:mm:ss"); var hide = moment().format("ss");
-			var gray1 = moment().format("m") * 0.833333333333;
-			var opac1 = 1-(gray1-1)/100; var gray2 = 50-gray1;
-			var opac2 = 0.5+gray1/100; var date = moment().format("DD-MM mm:ss");
+			var date = moment().format("DD-MM mm:ss"); var gray1 = moment().format("m") * 0.833333333333;
+			var opac1 = 1-(gray1-1)/100; var gray2 = 50-gray1; var opac2 = 0.5+gray1/100;
 			var dqs1 = Array.from(document.querySelectorAll(".calendar, .dailly, .hourly, .rssnews, .swatch"));
 			var dqs2 = Array.from(document.querySelectorAll(".wicon"));
 			var dqs3 = Array.from(document.querySelectorAll(".wtemp"));
@@ -99,11 +98,11 @@ Module.register("timer", {
 
 			if (self.config.DateMode) { 
 				if ((date == "25-12 00:06") || (date == "26-12 00:06")) { self.sendNotification("SHOW_ALERT", {
-						type: "notification", timer: 9000, title: "<i class=\"fa fa-gifts yellow\"></i> " + self.translate("Crăciun fericit!"),
+						type: "notification", timer: 9000, title: "<i class=\"fa fa-gifts yellow\"></i> " + self.translate("Marry Christmas!"),
 						message: self.translate("Happy holidays with many joys!")
 					});
 				} else if ((date == "01-01 00:06") || (date == "02-01 00:06")) { self.sendNotification("SHOW_ALERT", {
-						type: "notification", timer: 9000, title: "<i class=\"fa fa-glass-cheers yellow\"></i> " + self.translate("La mulți ani ") + 
+						type: "notification", timer: 9000, title: "<i class=\"fa fa-glass-cheers yellow\"></i> " + self.translate("Happy Birthday ") + 
 						moment().format("YYYY") + "!", message: self.translate("A new year as good as possible and good health!")
 					});
 				} else if (date == "14-02 00:06") { self.sendNotification("SHOW_ALERT", {
@@ -111,16 +110,16 @@ Module.register("timer", {
 						message: self.translate("Happy Valentine's and much happiness!")
 					});
 				} else if (date == self.config.Birthday1 + " 00:06") { self.sendNotification("SHOW_ALERT", {
-						type: "notification", timer: 9000, title: "<i class=\"fa fa-birthday-cake yellow\"></i> " + self.translate("La mulți ani, ") + 
-						self.config.Name1, message: self.translate("Good health and be happy! [F]")
+						type: "notification", timer: 9000, title: "<i class=\"fa fa-birthday-cake yellow\"></i> " + self.translate("Happy Birthday, ") + 
+						self.config.Name1, message: self.translate("Good health and be happy! F")
 					});
 				} else if (date == self.config.Birthday2 + " 00:06") { self.sendNotification("SHOW_ALERT", {
-						type: "notification", timer: 9000, title: "<i class=\"fa fa-birthday-cake yellow\"></i> " + self.translate("La mulți ani, ") + 
-						self.config.Name2, message: self.translate("Good health and be happy! [M]")
+						type: "notification", timer: 9000, title: "<i class=\"fa fa-birthday-cake yellow\"></i> " + self.translate("Happy Birthday, ") + 
+						self.config.Name2, message: self.translate("Good health and be happy! M")
 					});
 				} else if (date == self.config.Birthday3 + " 00:06") { self.sendNotification("SHOW_ALERT", {
-						type: "notification", timer: 9000, title: "<i class=\"fa fa-birthday-cake yellow\"></i> " + self.translate("La mulți ani, ") + 
-						self.config.Name3, message: self.translate("Good health and be happy! [M]")
+						type: "notification", timer: 9000, title: "<i class=\"fa fa-birthday-cake yellow\"></i> " + self.translate("Happy Birthday, ") + 
+						self.config.Name3, message: self.translate("Good health and be happy! M")
 					});
 				}
 			}
