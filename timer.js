@@ -5,7 +5,28 @@
 */
 
 Module.register("timer", {
-	defaults: {},
+	defaults: {
+		Bodysize: 1080,			// Minimum window width
+		SharpMode: true,		// hourly alert notification
+		DateMode: true,			// specific date hourly alert notification
+		FadeMode: true,			// fade to dimmed mode over night and back in the morning
+		DimMode: true,			// dimmed mode over night
+		NightMode: true,		// zoomed night mode for iPad 3
+		Background: false,		// background image set for .fullscreen.below in css file
+		Reload: false,			// reload page
+		Reinit: false,			// reinitialised MM
+		FirstPoint: "23",		// time of fade start increase
+		SecondPoint: "00",		// time of fade stop increase and night mode start
+		ThirdPoint: "06",		// time of fade start decrease and day mode start
+		ForthPoint: "07",		// time of fade mode stop decrease
+		FifthPoint: "22",		// time of day mode stop
+		Name1: "",		// Wife or girlfriend name
+		Birthday1: "",		// day & month
+		Name2: "",		// Husband or boyfriend name
+		Birthday2: "",		// day & month
+		Name3: "",			// child or pet name
+		Birthday3: "",			// day & month
+	},
 	
 	getTranslations: function() {
 		return {
