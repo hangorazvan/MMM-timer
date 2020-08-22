@@ -5,28 +5,7 @@
 */
 
 Module.register("timer", {
-	defaults: {
-		Bodysize: 1080,			// Minimum window width
-		SharpMode: true,		// hourly alert notification
-		DateMode: true,			// specific date hourly alert notification
-		FadeMode: true,			// fade to dimmed mode over night and back in the morning
-		DimMode: true,			// dimmed mode over night
-		NightMode: true,		// zoomed night mode for iPad 3
-		Background: false,		// background image set for .fullscreen.below in css file
-		Reload: false,			// reload page
-		Reinit: false,			// reinitialised MM
-		FirstPoint: "23",		// time of fade start increase
-		SecondPoint: "00",		// time of fade stop increase and night mode start
-		ThirdPoint: "06",		// time of fade start decrease and day mode start
-		ForthPoint: "07",		// time of fade mode stop decrease
-		FifthPoint: "22",		// time of day mode stop
-		Name1: "Paula!",		// Wife or girlfriend name
-		Birthday1: "22-08",		// day & month
-		Name2: "Răzvan!",		// Husband or boyfriend name
-		Birthday2: "13-10",		// day & month
-		Name3: "",			// child or pet name
-		Birthday3: "",			// day & month
-	},
+	defaults: {},
 	
 	getTranslations: function() {
 		return {
@@ -43,7 +22,7 @@ Module.register("timer", {
 			var gray1 = moment().format("m") * 0.833333333333;
 			var opac1 = 1-(gray1-1)/100; var gray2 = 50-gray1;
 			var opac2 = 0.5+gray1/100; var date = moment().format("DD-MM mm:ss");
-			var dqs1 = Array.from(document.querySelectorAll(".calendar, .dailly, .rssnews"));
+			var dqs1 = Array.from(document.querySelectorAll(".calendar, .dailly, .hourly, .rssnews, .swatch"));
 			var dqs2 = Array.from(document.querySelectorAll(".wicon"));
 			var dqs3 = Array.from(document.querySelectorAll(".wtemp"));
 			var dqs4 = Array.from(document.querySelectorAll(".weather"));
@@ -134,12 +113,12 @@ Module.register("timer", {
 					if (now >= self.config.SecondPoint + ":00:00" && now < self.config.ThirdPoint + ":00:00") {
 						body.forEach(function(element) {element.style.transform = "scale(" + window.innerWidth / self.config.Bodysize * 1.55 + ")";});
 						dqs1.forEach(function(element) {element.style.display = "none";});
-						dqs2.forEach(function(element) {element.style.float = "right";});
-						dqs3.forEach(function(element) {element.style["margin-left"] = "-25px";});
-						dqs4.forEach(function(element) {return element.style.position = "relative", element.style.left = "-750px",
-						element.style.top = "280px", element.style["text-align"] = "left";});
+						dqs2.forEach(function(element) {return element.style.float = "right", element.style["padding-left"] = "15px";});
+						dqs3.forEach(function(element) {element.style["margin-left"] = "-15px";});
+						dqs4.forEach(function(element) {return element.style.position = "relative", element.style.left = "-740px",
+						element.style.top = "270px", element.style["text-align"] = "left";});
 						dqs5.forEach(function(element) {return element.style.position = "relative",
-						element.style.left = "395px", element.style.top = "-170px", element.style["font-size"] = "3.5rem",
+						element.style.left = "390px", element.style.top = "-160px", element.style["font-size"] = "3.5rem",
 						element.style["line-height"] = "4rem", element.style.width = "300px";});
 						dqs6.forEach(function(element) {element.style.display = "none";});
 					} else if (now >= self.config.ThirdPoint + ":00:01" && now < self.config.FirstPoint + ":59:59") {
