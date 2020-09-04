@@ -13,6 +13,7 @@ All settings are inside of module or in config.js
 			FadeMode: true,			// fade to dimmed mode over night and back in the morning
 			DimMode: true,			// dimmed mode over night
 			NightMode: true,		// zoomed night mode for iPad 3
+			Burning: false,			// Move 1px whole content to prevent monitor to burn-in
 			Background: false,		// background image set for .fullscreen.below in css file
 			Reload: false,			// reload page
 			Reinit: false,			// reinitialised MM
