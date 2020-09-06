@@ -165,7 +165,7 @@ Module.register("timer", {
 						dqs1.forEach(function(element) {element.style.display = "none";});
 						dqs2.forEach(function(element) {return element.style.float = "right", element.style["padding-left"] = "15px";});
 						dqs3.forEach(function(element) {element.style["margin-left"] = "-15px";});
-						dqs4.forEach(function(element) {return element.style.position = "relative", element.style.left = "-740px",
+						dqs4.forEach(function(element) {return element.style.position = "relative", element.style.left = "-720px",
 						element.style.top = "270px", element.style["text-align"] = "left";});
 						dqs5.forEach(function(element) {return element.style.position = "relative",
 						element.style.left = "390px", element.style.top = "-160px", element.style["font-size"] = "3.5rem",
