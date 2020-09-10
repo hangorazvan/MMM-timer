@@ -29,6 +29,10 @@ Module.register("timer", {
 		Birthday3: "",			// day & month
 	},
 	
+	getScripts: function() {
+		return ["moment.js"];
+	},
+
 	getTranslations: function() {
 		return {en: "en.json", ro: "ro.json",};
 	},
@@ -42,7 +46,6 @@ Module.register("timer", {
 			var opac1 = 1-(gray1-1)/100; var gray2 = 50-gray1; var opac2 = 0.5+gray1/100;
 			var dqs1 = Array.from(document.querySelectorAll(".calendar, .dailly, .hourly, .rssnews, .swatch"));
 			var dqs2 = Array.from(document.querySelectorAll(".wicon"));
-			var dqs3 = Array.from(document.querySelectorAll(".wtemp"));
 			var dqs4 = Array.from(document.querySelectorAll(".weather"));
 			var dqs5 = Array.from(document.querySelectorAll(".pre-line"));
 			var dqs6 = Array.from(document.querySelectorAll(".monthly"));
@@ -131,35 +134,29 @@ Module.register("timer", {
 					if (now >= self.config.SecondPoint + ":00:00" && now < self.config.ThirdPoint + ":00:00") {
 						body.forEach(function(element) {element.style.transform = "scale(" + window.innerWidth / self.config.Bodysize * 1.55 + ")";});
 						dqs1.forEach(function(element) {element.style.display = "none";});
-						dqs2.forEach(function(element) {return element.style.float = "right", element.style["padding-left"] = "15px";});
-						dqs3.forEach(function(element) {element.style["margin-left"] = "-15px";});
-						dqs4.forEach(function(element) {return element.style.position = "relative", element.style.left = "-720px",
-						element.style.top = "270px", element.style["text-align"] = "left";});
+						dqs2.forEach(function(element) {return element.style.float = "right";});
+						dqs4.forEach(function(element) {return element.style.transform = "translate(-720px, 270px)", 
+						element.style["text-align"] = "left";});
 						dqs5.forEach(function(element) {return element.style.position = "absolute",
-						element.style.left = "390px", element.style.top = "-350px", element.style["font-size"] = "3.5rem",
-						element.style["line-height"] = "4rem", element.style.width = "300px";});
+						element.style.transform = "translate(-300px, -400px) scale(0.45)", element.style.width = "600px";});
 						dqs6.forEach(function(element) {element.style.display = "none";});
 					} else if (now >= self.config.ThirdPoint + ":00:01" && now < self.config.FirstPoint + ":59:59") {
 						body.forEach(function(element) {element.style.transform = "scale(" + window.innerWidth / self.config.Bodysize + ")";});
-						dqs1.forEach(function(element) {element.style.display = "initial";});
+						dqs1.forEach(function(element) {element.style.display = "inherit";});
 						dqs2.forEach(function(element) {element.style.float = "left";});
-						dqs3.forEach(function(element) {element.style["margin-left"] = "initial";});
-						dqs4.forEach(function(element) {return element.style.position = "initial", element.style.left = "initial",
-						element.style.top = "initial", element.style["text-align"] = "right";});
-						dqs5.forEach(function(element) {return element.style.position = "initial",
-						element.style.left = "initial", element.style.top = "initial", element.style["font-size"] = "6.4rem",
-						element.style["line-height"] = "6.8rem", element.style.width = "initial";});
+						dqs4.forEach(function(element) {return element.style.transform = "translate(0, 0)", 
+						element.style["text-align"] = "inherit";});
+						dqs5.forEach(function(element) {return element.style.position = "inherit",
+						element.style.transform = "scale(1)", element.style.width = "inherit";});
 						dqs6.forEach(function(element) {element.style.display = "table";});
 					}
 				} else {body.forEach(function(element) {element.style.transform = "scale(1)";});
-						dqs1.forEach(function(element) {element.style.display = "initial";});
+						dqs1.forEach(function(element) {element.style.display = "inherit";});
 						dqs2.forEach(function(element) {element.style.float = "left";});
-						dqs3.forEach(function(element) {element.style["margin-left"] = "initial";});
-						dqs4.forEach(function(element) {return element.style.position = "initial", element.style.left = "initial",
-						element.style.top = "initial", element.style["text-align"] = "right";});
-						dqs5.forEach(function(element) {return element.style.position = "initial",
-						element.style.left = "initial", element.style.top = "initial", element.style["font-size"] = "6.4rem",
-						element.style["line-height"] = "6.8rem", element.style.width = "initial";});
+						dqs4.forEach(function(element) {return  element.style.transform = "translate(0px, 0px)", 
+						element.style["text-align"] = "inherit";});
+						dqs5.forEach(function(element) {return element.style.position = "inherit",
+						element.style.transform = "scale(1)", element.style.width = "inherit";});
 						dqs6.forEach(function(element) {element.style.display = "table";});
 				}
 			} else { if (window.innerWidth < self.config.Bodysize) {
