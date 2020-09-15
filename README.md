@@ -13,7 +13,7 @@ All settings are inside of module or in config.js
 			fadeMode: true,		// fade to dimmed mode over night and back in the morning
 			dimmMode: true,		// dimmed mode over night
 			nightMode: true,	// zoomed night mode for iPad 3
-			dimming: 40,		// dimming amount (default is 40% grayscale with 0.6 opacity but you can change to w.e.y.w. ex: 70% grayscale with 0.3 opacity)
+			dimming: 40,		// 0 = opacity 1, 100 = opacity 0, 40 = opacity 0.6
 			midnight: 24,		// midnight or custom timer start
 			name1: "",		// Wife or girlfriend name
 			birthday1: "",		// day & month
