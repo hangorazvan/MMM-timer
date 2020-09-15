@@ -25,7 +25,7 @@ Module.register("timer", {
 			var gray1 = (dimm * grayscale/60).toPrecision(4); var opac1 = (1-gray1/100).toPrecision(2); 
 			var gray2 = (grayscale-gray1).toPrecision(4); var opac2 = (1-gray2/100).toPrecision(2);
 			var midnight = self.config.midnight; var morning = midnight - 18;
-			if (midnight < 18) {morning = midnight + 6;} var winter = moment().format("MM");
+			if (midnight <= 18) {morning = midnight + 6;} var winter = moment().format("MM");
 			if ((winter >= "01" && winter <= "03") || (winter >= "11" && winter <= "12")) {morning = morning + 1;}
 			var dqs1 = Array.from(document.querySelectorAll(".calendar, .dailly, .hourly, .rssnews, .swatch"));
 			var dqs2 = Array.from(document.querySelectorAll(".wicon"));
