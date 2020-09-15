@@ -7,27 +7,20 @@ All settings are inside of module or in config.js
 	{
 		module: "timer",
 		config: {
-			Bodysize: 1080,			// Minimum window width
-			SharpMode: true,		// hourly alert notification
-			DateMode: true,			// specific date hourly alert notification
-			FadeMode: true,			// fade to dimmed mode over night and back in the morning
-			DimMode: true,			// dimmed mode over night
-			NightMode: true,		// zoomed night mode for iPad 3
-			Burning: false,			// Move 1px whole content to prevent monitor to burn-in
-			Background: false,		// background image set for .fullscreen.below in css file
-			Reload: false,			// reload page
-			Reinit: false,			// reinitialised MM
-			FirstPoint: "23",		// time of fade start increase
-			SecondPoint: "00",		// time of fade stop increase and night mode start
-			ThirdPoint: "06",		// time of fade start decrease and day mode start
-			ForthPoint: "07",		// time of fade mode stop decrease
-			FifthPoint: "22",		// time of day mode stop
-			Name1: "",		// Wife or girlfriend name
-			Birthday1: "",		// day & month
-			Name2: "",		// Husband or boyfriend name
-			Birthday2: "",		// day & month
-			Name3: "",			// child or pet name
-			Birthday3: "",			// day & month
+				bodysize: 1080,			// Minimum window width
+				sharpMode: true,		// hourly alert notification
+				dateMode: true,			// specific date hourly custom notification
+				fadeMode: true,			// fade to dimmed mode over night and back in the morning
+				dimmMode: true,			// dimmed mode over night
+				nightMode: true,		// zoomed night mode for iPad 3
+				dimming: 40,			// dimming amount (40% grayscale with 0.6 opacity or w.e.y.w. ex:70% grayscale with 0.3 opacity)
+				midnight: 24,			// midnight or custom timer start
+				name1: "Paula!",		// Wife or girlfriend name
+				birthday1: "22-08",		// day & month
+				name2: "Răzvan!",		// Husband or boyfriend name
+				birthday2: "13-10",		// day & month
+				name3: "",				// Child or pet name
+				birthday3: ""			// day & month
 		}
 	},
 	
