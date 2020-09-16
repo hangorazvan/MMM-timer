@@ -48,7 +48,6 @@ Module.register("timer", {
 			var dqs4 = Array.from(document.querySelectorAll(".weather"));
 			var dqs5 = Array.from(document.querySelectorAll(".pre-line"));
 			var dqs6 = Array.from(document.querySelectorAll(".monthly"));
-			var dqs7 = Array.from(document.querySelectorAll(".fullscreen.below"));
 			var body = Array.from(document.querySelectorAll("body"));
 			body.forEach(function(element) {return element.style["min-height"] =
 			window.innerHeight / (window.innerWidth / self.config.bodysize) + "px",
