@@ -13,17 +13,23 @@ Module.register("timer", {
 		dimmMode: true,		// dimmed mode over night
 		nightMode: true,	// zoomed night mode for iPad 3
 		dimming: 40,		// 0 = opacity 1, 100 = opacity 0, 40 = opacity 0.6
-		midnight: "00",		// midnight or custom timer start
 		name1: "",			// Wife or girlfriend name
 		birthday1: "",		// day & month
 		name2: "",			// Husband or boyfriend name
 		birthday2: "",		// day & month
 		name3: "",			// Child or pet name
 		birthday3: ""		// day & month
-	},
 
+		debugging: false 	// midnight for custom timer start
+	},
+	
 	getScripts: function() {
 		return ["moment.js"];
+	},
+
+
+	getStyles: function () {
+		return ["font-awesome.css"];
 	},
 
 	getTranslations: function() {
@@ -48,32 +54,16 @@ Module.register("timer", {
 			var opac1 = (1-gray1/100).toPrecision(2);
 			var gray2 = (grayscale-gray1).toPrecision(4);
 			var opac2 = (1-gray2/100).toPrecision(2);
-			var midnight = self.config.midnight || moment().startOf("day").format("HH"); 
+			var midnight = self.config.debugging || moment().startOf("day").format("HH");
 			var before = parseInt(midnight) + 23;
-			if (before > 23) {
-				before = midnight - 1;
-			} else if (before < 10) {
-				before = "0" + before;
-			}
 			var morning = parseInt(midnight) - 18; 
-			if (midnight <= 18) {
-				morning = parseInt(midnight) + 6;
-			}
-			if (morning > 23) {
-				morning = morning - 24;
-			} else if (morning < 10) {
-				morning = "0" + morning;
-			}
 			var after = parseInt(morning) + 1;
-			if (after > 23) {
-				after = after - 24;
-			} else if (after < 10) {
-				after = "0" + after;
-			}
 			var winter = moment().format("MM");
-			if ((winter >= "01" && winter <= "03") || (winter >= "11" && winter <= "12")) {
-				morning = morning + 1;
-			}
+			if((winter>="01"&&winter<="03")||(winter>="11"&&winter<="12")){morning=morning+1;}
+			if(self.config.debugging){if(before>23){before=midnight-1}else if(before<10){before="0"+before}if(midnight<=18){morning=parseInt(midnight)+6}
+			if(morning>23){morning=morning-24}else if(morning<10){morning="0"+morning}if(after>23){after=after-24}else if(after<10){after="0"+after}
+			Log.log("Midnight time: "+midnight+", Before midnight time: "+before+", Morning time: "+morning+", After morning time: "+after);
+			Log.log("Midnight opacity: "+opac1+", Midnight grayscale: "+gray1+", Morning opacity: "+opac2+", Morning grayscale: "+gray2)}
 
 			var dqs1 = Array.from(document.querySelectorAll(".calendar, .dailly, .hourly, .rssnews, .swatch"));
 			var dqs2 = Array.from(document.querySelectorAll(".wicon"));

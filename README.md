@@ -1,4 +1,4 @@
-# timer
+# MMM-timer
 MagicMirror 2 Notification alert & timer trigger for my own use in https://github.com/hangorazvan/MagicBoard on iPad3
 
 Set in config.js without position and is working in background.
@@ -14,12 +14,13 @@ All settings are inside of module or in config.js
 			dimmMode: true,		// dimmed mode over night
 			nightMode: true,	// zoomed night mode for iPad 3
 			dimming: 40,		// 0 = opacity 1, 100 = opacity 0, 40 = opacity 0.6
-			midnight: "00",		// midnight or custom timer start
-			name1: "",		// Wife or girlfriend name
+			name1: "",			// Wife or girlfriend name
 			birthday1: "",		// day & month
-			name2: "",		// Husband or boyfriend name
+			name2: "",			// Husband or boyfriend name
 			birthday2: "",		// day & month
-			name3: "",		// Child or pet name
+			name3: "",			// Child or pet name
 			birthday3: ""		// day & month
+
+			debugging: false 	// midnight for custom timer start
 		}
 	},
