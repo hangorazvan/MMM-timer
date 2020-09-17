@@ -13,7 +13,7 @@ Module.register("timer", {
 		dimmMode: true,		// dimmed mode over night
 		nightMode: true,	// zoomed night mode for iPad 3
 		dimming: 40,		// 0 = opacity 1, 100 = opacity 0, 40 = opacity 0.6
-		midnight: 24,		// midnight or custom timer start
+		midnight: "00",		// midnight or custom timer start
 		name1: "",			// Wife or girlfriend name
 		birthday1: "",		// day & month
 		name2: "",			// Husband or boyfriend name
@@ -34,14 +34,20 @@ Module.register("timer", {
 		Log.info("Starting module: " + this.name); var self = this;
 
 		setInterval(function() {
-			var now = moment().format("k:mm:ss"); var hide = moment().format("ss");
+			var now = moment().format("HH:mm:ss"); var hide = moment().format("ss");
 			var date = moment().format("DD-MM mm:ss"); var dimm = moment().format("m");
 			var grayscale = self.config.dimming; var opacity = (1-grayscale/100).toPrecision(2);
 			var gray1 = (dimm * grayscale/60).toPrecision(4); var opac1 = (1-gray1/100).toPrecision(2); 
 			var gray2 = (grayscale-gray1).toPrecision(4); var opac2 = (1-gray2/100).toPrecision(2);
-			var midnight = self.config.midnight; var morning = midnight - 18;
-			if (midnight <= 18) {morning = midnight + 6;} var winter = moment().format("MM");
+
+			var midnight = self.config.midnight; var before = parseInt(midnight) + 23;
+			if (before > 23) {before = midnight - 1;} if (before < 10) {before = "0" + before;}
+			var morning = parseInt(midnight) - 18; if (midnight <= 18) {morning = parseInt(midnight) + 6;} 
+			if (morning > 23) {morning = morning - 24;} if (morning < 10) {morning = "0" + morning;}
+			var after = parseInt(morning) + 1; if (after > 23) {after = after - 24;}
+			if (after < 10) {after = "0" + after;} var winter = moment().format("MM");
 			if ((winter >= "01" && winter <= "03") || (winter >= "11" && winter <= "12")) {morning = morning + 1;}
+
 			var dqs1 = Array.from(document.querySelectorAll(".calendar, .dailly, .hourly, .rssnews, .swatch"));
 			var dqs2 = Array.from(document.querySelectorAll(".wicon"));
 			var dqs3 = Array.from(document.querySelectorAll(".ns-box"));
@@ -54,18 +60,18 @@ Module.register("timer", {
 			element.style["min-width"] = self.config.bodysize + "px";});
 
 			if (self.config.sharpMode) {
-				if ((now == "23:00:00") || (now == "24:00:00") || (now == "1:00:00")) {
+				if ((now == "23:00:00") || (now == "00:00:00") || (now == "01:00:00")) {
 					self.sendNotification("SHOW_ALERT", {
 						type: "notification", title: "<i class='far fa-bell lime'></i> " + self.translate("Sharp hour!"),
 						message: self.translate("Time it was ") + moment().format("H:mm") + "<br>" + self.translate("Good night!")
 					});
-				} else if ((now == "2:00:00") || (now == "3:00:00") || (now == "4:00:00")) {
+				} else if ((now == "02:00:00") || (now == "03:00:00") || (now == "04:00:00")) {
 					self.sendNotification("SHOW_ALERT", {
 						type: "notification", title: "<i class='far fa-bell lime'></i> " + self.translate("Sharp hour!"),
 						message: self.translate("Time it was ") + moment().format("H:mm") + "<br>" + self.translate("Sleep well!")
 					});
-				} else if ((now == "5:00:00") || (now == "6:00:00") || (now == "7:00:00") || (now == "8:00:00") || 
-					(now == "9:00:00") || (now == "10:00:00") || (now == "11:00:00")) {
+				} else if ((now == "05:00:00") || (now == "06:00:00") || (now == "07:00:00") || (now == "08:00:00") || 
+					(now == "09:00:00") || (now == "10:00:00") || (now == "11:00:00")) {
 					self.sendNotification("SHOW_ALERT", {
 						type: "notification", title: "<i class='far fa-bell lime'></i> " + self.translate("Sharp hour!"),
 						message: self.translate("Time it was ") + moment().format("H:mm") + "<br>" + self.translate("Good morning!")
@@ -129,7 +135,7 @@ Module.register("timer", {
 			if (window.innerWidth < self.config.bodysize) {
 				body.forEach(function(element) {element.style.transform = "scale(" + window.innerWidth / self.config.bodysize + ")";});
 
-				if (self.config.nightMode) { if (now >= midnight.toString() + ":00:00" && now < morning.toString() + ":00:00") {
+				if (self.config.nightMode) { if (now >= midnight + ":00:00" && now < morning + ":00:00") {
 						body.forEach(function(element) {element.style.transform = "scale(" + window.innerWidth / self.config.bodysize * 1.55 + ")";});
 						dqs1.forEach(function(element) {element.style.display = "none";});
 						dqs2.forEach(function(element) {element.style.float = "right";});
@@ -154,16 +160,16 @@ Module.register("timer", {
 
 			if (self.config.dimmMode) {
 				if (self.config.fadeMode) {
-					if (now >= (midnight-1).toString() + ":00:00" && now < midnight.toString() + ":00:00") {
+					if (now >= before + ":00:00" && now < midnight + ":00:00") {
 						body.forEach(function(element) {return element.style.opacity = opac1, element.style.filter = "grayscale(" + gray1 + "%)";});
-					} else if (now >= midnight.toString() + ":00:00" && now < morning.toString() + ":00:00") {
+					} else if (now >= midnight + ":00:00" && now < morning + ":00:00") {
 						body.forEach(function(element) {return element.style.opacity = opacity, element.style.filter = "grayscale(" + grayscale + "%)";});
-					} else if (now >= morning.toString() + ":00:00" && now < (morning+1).toString() + ":00:00") {
+					} else if (now >= morning + ":00:00" && now < after + ":00:00") {
 						body.forEach(function(element) {return element.style.opacity = opac2, element.style.filter = "grayscale(" + gray2 + "%)";});
 					} else {
 						body.forEach(function(element) {return element.style.opacity = "1", element.style.filter = "grayscale(0%)";});
 					}
-				} else { if (now >= midnight.toString() + ":00:00" && now < morning.toString() + ":00:00") {
+				} else { if (now >= midnight + ":00:00" && now < morning + ":00:00") {
 						body.forEach(function(element) {return element.style.opacity = opacity, element.style.filter = "grayscale(" + grayscale + "%)"});
 					} else {
 						body.forEach(function(element) {return element.style.opacity = "1", element.style.filter = "grayscale(0%)";});
