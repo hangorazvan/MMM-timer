@@ -12,7 +12,7 @@ All settings are inside of module or in config.js
 			dateMode: true,		// specific date hourly custom notification
 			fadeMode: true,		// fade to dimmed mode over night and back in the morning
 			dimmMode: true,		// dimmed mode over night
-			nightMode: true,	// zoomed night mode for iPad 3
+			nightMode: false,	// zoomed night mode for iPad 3
 			dimming: 40,		// 0 = opacity 1, 100 = opacity 0, 40 = opacity 0.6
 			name1: "",			// Wife or girlfriend name
 			birthday1: "",		// day & month
@@ -21,6 +21,6 @@ All settings are inside of module or in config.js
 			name3: "",			// Child or pet name
 			birthday3: ""		// day & month
 
-			debugging: false 	// midnight for custom timer start
+			debugging: false 	// changing some variables for debugging "00" = midnight or custom start point
 		}
 	},
