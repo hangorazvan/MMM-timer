@@ -11,7 +11,7 @@ Module.register("timer", {
 		dateMode: true,		// specific date hourly custom notification
 		fadeMode: true,		// fade to dimmed mode over night and back in the morning
 		dimmMode: true,		// dimmed mode over night
-		nightMode: true,	// zoomed night mode for iPad 3
+		nightMode: false,	// zoomed night mode for iPad 3
 		dimming: 40,		// 0 = opacity 1, 100 = opacity 0, 40 = opacity 0.6
 		name1: "",			// Wife or girlfriend name
 		birthday1: "",		// day & month
@@ -20,17 +20,17 @@ Module.register("timer", {
 		name3: "",			// Child or pet name
 		birthday3: ""		// day & month
 
-		debugging: false 	// midnight for custom timer start
+		debugging: false 	// changing some variables for debugging "00" = midnight or custom start point
 	},
 	
-	getScripts: function() {
-		return ["moment.js"];
-	},
+//	getScripts: function() {
+//		return ["moment.js"];
+//	},
 
 
-	getStyles: function () {
-		return ["font-awesome.css"];
-	},
+//	getStyles: function () {
+//		return ["font-awesome.css"];
+//	},
 
 	getTranslations: function() {
 		return {
@@ -49,23 +49,31 @@ Module.register("timer", {
 			var date = moment().format("DD-MM mm:ss");
 			var dimm = moment().format("m");
 			var grayscale = self.config.dimming;
-			var opacity = (1-grayscale/100).toPrecision(2);
-			var gray1 = (dimm * grayscale/60).toPrecision(4);
-			var opac1 = (1-gray1/100).toPrecision(2);
-			var gray2 = (grayscale-gray1).toPrecision(4);
-			var opac2 = (1-gray2/100).toPrecision(2);
-			var midnight = self.config.debugging || moment().startOf("day").format("HH");
+			var opacity = (1 - grayscale / 100).toPrecision(2);
+			var gray1 = (dimm * grayscale / 60).toPrecision(4);
+			var opac1 = (1 - gray1 / 100).toPrecision(2);
+			var gray2 = (grayscale - gray1).toPrecision(4);
+			var opac2 = (1 - gray2 / 100).toPrecision(2);
+			var midnight = moment().startOf("day").format("HH");
 			var before = parseInt(midnight) + 23;
-			var morning = parseInt(midnight) - 18; 
-			var after = parseInt(morning) + 1;
+			var morning = "0" + (parseInt(midnight) + 6);
+			var after = "0" + (parseInt(midnight) + 7);
 			var winter = moment().format("MM");
-			if((winter>="01"&&winter<="03")||(winter>="11"&&winter<="12")){morning=morning+1;}
-			if(self.config.debugging){if(before>23){before=midnight-1}else if(before<10){before="0"+before}if(midnight<=18){morning=parseInt(midnight)+6}
-			if(morning>23){morning=morning-24}else if(morning<10){morning="0"+morning}if(after>23){after=after-24}else if(after<10){after="0"+after}
-			Log.log("Midnight time: "+midnight+", Before midnight time: "+before+", Morning time: "+morning+", After morning time: "+after);
-			Log.log("Midnight opacity: "+opac1+", Midnight grayscale: "+gray1+", Morning opacity: "+opac2+", Morning grayscale: "+gray2)}
+			if ((winter >= "01" && winter <= "03") || (winter >= "11" && winter <= "12")) {
+				morning = morning + 1;
+			}
 
-			var dqs1 = Array.from(document.querySelectorAll(".calendar, .dailly, .hourly, .rssnews, .swatch"));
+			if (self.config.debugging!==false){dimm=moment().format("s");
+			gray1=(dimm*(grayscale/60)/1).toPrecision(2);opac1=((1-gray1/100)/1).toPrecision(2);
+			gray2=((grayscale-gray1)/1).toPrecision(4);opac2=((1-gray2/100)/1).toPrecision(2);
+			midnight=self.config.debugging;if(midnight>"00"||before>23){before=midnight-1;}
+			if(before<10){before="0"+before;}if(midnight<=23){morning=parseInt(midnight)+6;
+			after=parseInt(midnight)+7;}if(morning>23){morning=morning-24;}if(morning<10){
+			morning = "0" + morning;}if(after>23){after=after-24;}if(after<=10){after="0"+after;}
+			Log.log("Midnight: "+midnight+", Before: "+before+", Morning: "+morning+", After: "+ after);
+			Log.log("Opacity 1: "+opac1+", Grayscale 1: "+gray1+", Opacity 2: "+opac2+", Grayscale 2: "+gray2);}
+
+			var dqs1 = Array.from(document.querySelectorAll(".calendar, .daily, .hourly, .rssnews, .swatch"));
 			var dqs2 = Array.from(document.querySelectorAll(".wicon"));
 			var dqs3 = Array.from(document.querySelectorAll(".ns-box"));
 			var dqs4 = Array.from(document.querySelectorAll(".weather"));
