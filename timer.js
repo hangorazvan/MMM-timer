@@ -18,7 +18,7 @@ Module.register("timer", {
 		name2: "",			// Husband or boyfriend name
 		birthday2: "",		// day & month
 		name3: "",			// Child or pet name
-		birthday3: ""		// day & month
+		birthday3: "",		// day & month
 
 		debugging: false 	// changing some variables for debugging "00" = midnight or custom start point
 	},
