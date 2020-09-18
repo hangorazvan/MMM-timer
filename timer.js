@@ -65,7 +65,7 @@ Module.register("timer", {
 
 			if (self.config.debugging!==false){dimm=moment().format("s");
 			gray1=(dimm*(grayscale/60)/1).toPrecision(2);opac1=((1-gray1/100)/1).toPrecision(2);
-			gray2=((grayscale-gray1)/1).toPrecision(4);opac2=((1-gray2/100)/1).toPrecision(2);
+			gray2=((grayscale-gray1)/1).toPrecision(2);opac2=((1-gray2/100)/1).toPrecision(2);
 			midnight=self.config.debugging;if(midnight>"00"||before>23){before=midnight-1;}
 			if(before<10){before="0"+before;}if(midnight<=23){morning=parseInt(midnight)+6;
 			after=parseInt(midnight)+7;}if(morning>23){morning=morning-24;}if(morning<10){
