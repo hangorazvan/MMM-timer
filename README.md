@@ -14,11 +14,11 @@ All settings are inside of module or in config.js
 			dimmMode: true,		// dimmed mode over night
 			nightMode: false,	// zoomed night mode for iPad 3
 			dimming: 40,		// 0 = opacity 1, 100 = opacity 0, 40 = opacity 0.6
-			name1: "",			// Wife or girlfriend name
+			name1: "",		// Wife or girlfriend name
 			birthday1: "",		// day & month
-			name2: "",			// Husband or boyfriend name
+			name2: "",		// Husband or boyfriend name
 			birthday2: "",		// day & month
-			name3: "",			// Child or pet name
+			name3: "",		// Child or pet name
 			birthday3: "",		// day & month
 
 			debugging: false 	// changing some variables for debugging "00" = midnight or custom start point
