@@ -1,4 +1,4 @@
-# MMM-timer
+# timer
 MagicMirror 2 Notification alert & timer trigger for my own use in https://github.com/hangorazvan/MagicBoard on iPad3
 
 Set in config.js without position and is working in background.
