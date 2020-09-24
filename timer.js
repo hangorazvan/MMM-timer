@@ -8,20 +8,23 @@
  */
 Module.register("timer", {
 	defaults: {
-		debugging: 12
+		debugging: false
 	},
 	
 //	getScripts: function() {
-//		return ["moment.js"];
+//	return ["moment.js"];
 //	},
 
 	start: function() {
 		Log.info("Starting module: " + this.name);
+		var self = this;
+		setInterval(function() {
+			self.timer();
+		}, 1000);
 	},
 
 	timer: function() {
 		var self = this; var now = moment().format("HH:mm:ss");
-		var body = Array.from(document.querySelectorAll("body"));
 
 		if (self.config.debugging!==false) {
 			midnight = moment().startOf("d").add(self.config.debugging,"h").format("HH:mm:ss");
@@ -31,8 +34,16 @@ Module.register("timer", {
 			midnight = moment().startOf("d").format("HH:mm:ss");
 			morning = moment().startOf("d").add(6,"h").format("HH:mm:ss");
 			if ((winter >= "1" && winter <= "3") || (winter >= "11" && winter <= "12")) {
-				morning = morning + 1;}
+				morning = morning + 1;
+			}
 		}
+
+		var hide = Array.from(document.querySelectorAll(".module:not(.clock):not(.weather):not(.compliments):not(.swatch)"));
+		var wicon = Array.from(document.querySelectorAll(".wicon"));
+		var wthr = Array.from(document.querySelectorAll(".weather"));
+		var comp = Array.from(document.querySelectorAll(".pre-line"));
+		var mcal = Array.from(document.querySelectorAll(".monthly"));
+		var body = Array.from(document.querySelectorAll("body"));
 
 		body.forEach(function(element) {
 			return element.style["min-height"] = window.innerHeight / (window.innerWidth / self.config.bodysize) + "px",
@@ -52,38 +63,21 @@ Module.register("timer", {
 			body.forEach(function(element) {element.style.transform = "scale(1)";});
 		}
 
-		function day_mode() { self.sendNotification("CHANGE_POSITIONS_DEFAULTS")
-			MM.getModules().withClass(self.config.day_modules).exceptWithClass(self.config.except_modules).enumerate(function(module) {
-				module.show(config.animation, { lockString: self.identifier });
-			});
+		function day_mode() {
+			hide.forEach(function(element) {element.style.display = "inherit";});
+			wicon.forEach(function(element) {element.style.float = "left";});
+			wthr.forEach(function(element) {return element.style.transform = "translate(0, 0)", element.style["text-align"] = "inherit";});
+			comp.forEach(function(element) {return element.style.position = "inherit", element.style.transform = "scale(1)", element.style.width = "inherit";});
+			mcal.forEach(function(element) {element.style.display = "table";});
 		}
 
 		function night_mode() {
-			self.sendNotification("CHANGE_POSITIONS",
-			modules = {
-				'weather':{visible: 'true',	position: 'top_left'},
-				'compliments':{visible: 'true', position: 'top_center'},
-				'calendar':{visible: 'false', position: 'bottom_left'},
-				'_calendar':{visible: 'false', position: 'bottom_left'},
-				'lifecounter':{visible: 'false', position: 'bottom_left'},
-				'monthly':{visible: 'false', position: 'bottom_center'},
-				}
-			);
-			MM.getModules().withClass(self.config.day_modules).exceptWithClass(self.config.except_modules).enumerate(function(module) {
-				module.hide(config.animation, { lockString: self.identifier });
-			});
+			hide.forEach(function(element) {element.style.display = "none";});
+			wicon.forEach(function(element) {element.style.float = "right";});
+			wthr.forEach(function(element) {return element.style.transform = "translate(-720px, 295px)",element.style["text-align"] = "left";});
+			comp.forEach(function(element) {return element.style.position = "absolute",
+				element.style.transform = "translate(-300px, -400px) scale(0.45)", element.style.width = "600px";});
+			mcal.forEach(function(element) {element.style.display = "none";});
 		}
 	},
-
-	notificationReceived: function (notification, payload, sender) {
-		var self = this;
-		if (notification === "DOM_OBJECTS_CREATED") {
-//		if (notification === "ALL_MODULES_STARTED") {
-			setTimeout(function() {
-				setInterval(function() {
-					self.timer();
-				},1000);
-			},10000);
-		}
-	}
 });
