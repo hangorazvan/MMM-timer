@@ -1,5 +1,5 @@
 # timer
-MagicMirror 2 Notification alert & timer trigger for my own use on iPad3
+MagicMirror 2 Notification alert, screen dimmer & timer trigger for my own use on iPad3
 
 Set in config.js without position and is working in background.
 All settings inside of module or in config.js
