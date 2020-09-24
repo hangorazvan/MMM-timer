@@ -175,6 +175,7 @@ Module.register("timer", {
 
 	notification: function() {
 		var now = moment().format("HH:mm:ss");
+		var secs = moment().format("s");
 		var date = moment().format("DD-MM mm:ss");
 		var ns_box = Array.from(document.querySelectorAll(".ns-box"));
 		
