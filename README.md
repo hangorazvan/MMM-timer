@@ -6,7 +6,7 @@ Set in config.js without position and is working in background.
 All settings inside of module or in config.js
 
 	{
-		module: "timer",
+		module: "notification",
 		config: {
 			name1: "",		// Wife or girlfriend name
 			birthday1: "",		// day & month
