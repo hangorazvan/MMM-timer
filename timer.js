@@ -75,9 +75,9 @@ Module.register("timer", {
 			}
 		}
 
-		var hide = Array.from(document.querySelectorAll(".module:not(.clock):not(.weather):not(.compliments):not(.swatch)"));
+		var hide = Array.from(document.querySelectorAll(".module:not(.clock):not(.currentweather):not(.compliments):not(.swatch)"));
 		var wicon = Array.from(document.querySelectorAll(".wicon"));
-		var wthr = Array.from(document.querySelectorAll(".weather"));
+		var wthr = Array.from(document.querySelectorAll(".currentweather"));
 		var comp = Array.from(document.querySelectorAll(".pre-line"));
 		var mcal = Array.from(document.querySelectorAll(".monthly"));
 		var body = Array.from(document.querySelectorAll("body"));
@@ -111,9 +111,9 @@ Module.register("timer", {
 		function night_mode() {
 			hide.forEach(function(element) {element.style.display = "none";});
 			wicon.forEach(function(element) {element.style.float = "right";});
-			wthr.forEach(function(element) {return element.style.transform = "translate(-720px, 295px)",element.style["text-align"] = "left";});
+			wthr.forEach(function(element) {return element.style.transform = "translate(-720px, 290px)",element.style["text-align"] = "left";});
 			comp.forEach(function(element) {return element.style.position = "absolute",
-				element.style.transform = "translate(-300px, -400px) scale(0.45)", element.style.width = "600px";});
+				element.style.transform = "translate(-300px, -400px) scale(0.5)", element.style.width = "600px";});
 			mcal.forEach(function(element) {element.style.display = "none";});
 		}
 	},
