@@ -1,41 +1,24 @@
-/*	Magic Mirror 2
-*	Module: Timer
-*	by Razvan Cristea 
-*	https://github.com/hangorazvan
-*/
-
+/* Magic Mirror
+ *
+ * MIT Licensed.
+ *
+ * Redesigned by Răzvan Cristea
+ * for iPad 3 & HD display
+ * https://github.com/hangorazvan
+ */
 Module.register("timer", {
 	defaults: {
-		timer: true,
-		bodysize: 1080,		// Minimum window width
-		nightMode: true,	// zoomed night mode for iPad 3
-
-		dimmer: true,
-		fadeMode: true,		// fade to dimmed mode over night and back in the morning
-		dimmMode: true,		// dimmed mode over night
-		dimming: 40,		// 0 = opacity 1, 100 = opacity 0, 40 = opacity 0.6
-
-		notification: true,
-		sharpMode: true,	// hourly alert notification
-		dateMode: true,		// specific date hourly custom notification
-		name1: "",			// Wife or girlfriend name
-		birthday1: "",		// day & month
-		name2: "",			// Husband or boyfriend name
-		birthday2: "",		// day & month
-		name3: "",			// Child or pet name
-		birthday3: ""		// day & month
-
-		debugging: false 	// midnight for custom timer start
+		debugging: false
 	},
 	
-	getScripts: function() {
-		return ["moment.js"];
-	},
+//	getScripts: function() {
+//		return ["moment.js"];
+//	},
 
 
-	getStyles: function () {a
-		return ["font-awesome.css"];
-	},
+//	getStyles: function () {
+//		return ["font-awesome.css"];
+//	},
 
 	getTranslations: function() {
 		return {
@@ -48,16 +31,15 @@ Module.register("timer", {
 		Log.info("Starting module: " + this.name);
 		var self = this;
 		setInterval(function() {
-			if (self.config.timer) {
-				self.timer();
+			self.timer();
+			self.notification();
+			if (this.config.debugging!==false) {
+				self.dimmer();	
 			}
-			if (self.config.dimmer) {
-				self.dimmer();
-			}
-			if (self.config.notification) {
-				self.notification();
-			}
-		}, 1000);
+		}, 1000); self.dimmer();
+		setInterval(function() {
+			self.dimmer();
+		}, 60 * 1000);
 	},
 
 	timer: function() {	var self = this;
@@ -65,8 +47,8 @@ Module.register("timer", {
 
 		if (this.config.debugging!==false) {
 			midnight = moment().startOf("d").add(this.config.debugging,"h").format("HH:mm:ss");
-			morning = moment().startOf("d").add(this.config.debugging + 6,"h").format("HH:mm:ss");
-			Log.log("Midnight " + midnight + " Morning " + morning);
+			morning = moment().startOf("d").add(this.config.debugging + 1,"h").format("HH:mm:ss");
+			Log.log("Timer start & end points - Midnight " + midnight + " Morning " + morning);
 		} else { midnight = moment().startOf("d").format("HH:mm:ss");
 			morning = moment().startOf("d").add(6,"h").format("HH:mm:ss");
 			var winter = moment().format("M");
@@ -75,7 +57,7 @@ Module.register("timer", {
 			}
 		}
 
-		var hide = Array.from(document.querySelectorAll(".module:not(.clock):not(.currentweather):not(.compliments):not(.swatch)"));
+		var hide = Array.from(document.querySelectorAll(".module:not(.clock):not(.currentweather):not(.compliments):not(.swatch):not(.connection)"));
 		var wicon = Array.from(document.querySelectorAll(".wicon"));
 		var wthr = Array.from(document.querySelectorAll(".currentweather"));
 		var comp = Array.from(document.querySelectorAll(".pre-line"));
@@ -101,17 +83,47 @@ Module.register("timer", {
 		}
 
 		function day_mode() {
+//			MM.getModules().withClass("module").exceptWithClass("clock currentweather compliments swatch connection").enumerate(function(module) {
+//				module.show(900, { lockString: this.identifier });
+//			});
+
+
+//			moduleWrapper.style.transition = "opacity " + speed / 1000 + "s";
+			// Restore the position. See hideModule() for more info.
+//			moduleWrapper.style.position = "static";
+//			MM.updateWrapperStates();
+			// Waiting for DOM-changes done in updateWrapperStates before we can start the animation.
+//			moduleWrapper.style.opacity = 1;
+
+
 			hide.forEach(function(element) {element.style.display = "inherit";});
 			wicon.forEach(function(element) {element.style.float = "left";});
-			wthr.forEach(function(element) {return element.style.transform = "translate(0, 0)", element.style["text-align"] = "inherit";});
+			wthr.forEach(function(element) {return element.style.transform = "translate(0, 0)", element.style.textAlign = "inherit";});
 			comp.forEach(function(element) {return element.style.position = "inherit", element.style.transform = "scale(1)", element.style.width = "inherit";});
 			mcal.forEach(function(element) {element.style.display = "table";});
 		}
 
 		function night_mode() {
+//			MM.getModules().exceptWithClass("clock currentweather compliments swatch connection").enumerate(function(module) {
+//				module.hide(900, { lockString: this.identifier });
+//			});
+
+
+//			moduleWrapper.style.transition = "opacity " + speed / 1000 + "s";
+//			moduleWrapper.style.opacity = 0;
+//			setTimeout(function () {
+				// To not take up any space, we just make the position absolute.
+				// since it's fade out anyway, we can see it lay above or
+				// below other modules. This works way better than adjusting
+				// the .display property.
+//				moduleWrapper.style.position = "fixed";
+//				MM.updateWrapperStates();
+//			}, speed);
+
+
 			hide.forEach(function(element) {element.style.display = "none";});
 			wicon.forEach(function(element) {element.style.float = "right";});
-			wthr.forEach(function(element) {return element.style.transform = "translate(-720px, 280px)",element.style["text-align"] = "left";});
+			wthr.forEach(function(element) {return element.style.transform = "translate(-720px, 280px)",element.style.textAlign = "left";});
 			comp.forEach(function(element) {return element.style.position = "absolute",
 				element.style.transform = "translate(-300px, -400px) scale(0.5)", element.style.width = "600px";});
 			mcal.forEach(function(element) {element.style.display = "none";});
@@ -129,12 +141,12 @@ Module.register("timer", {
 		if (this.config.debugging!==false) {
 			night=midnight=moment().startOf("d").add(this.config.debugging,"h").format("HH:mm:ss");
 			before = moment().startOf("d").add(this.config.debugging - 1,"h").format("HH:mm:ss");
-			morning = moment().startOf("d").add(this.config.debugging + 6,"h").format("HH:mm:ss");
-			after = moment().startOf("d").add(this.config.debugging + 7,"h").format("HH:mm:ss");
+			morning = moment().startOf("d").add(this.config.debugging + 1,"h").format("HH:mm:ss");
+			after = moment().startOf("d").add(this.config.debugging + 2,"h").format("HH:mm:ss");
 			gray1 = (secs*(grayscale/60)/1).toPrecision(2); opac1 = ((1-gray1/100)/1).toPrecision(2);
 			gray2 = ((grayscale-gray1)/1).toPrecision(2); opac2 = ((1-gray2/100)/1).toPrecision(2);
-			Log.log("Night "+night+" Midnight "+midnight+" Before "+before+" Morning "+morning+" After "+after);
-			Log.log("Opacity 1: "+opac1+", Grayscale 1: "+gray1+", Opacity 2: "+opac2+", Grayscale 2: "+gray2);
+			Log.log("Dimmer Night "+night+" Midnight "+midnight+" Before "+before+" Morning "+morning+" After "+after);
+			Log.log("Dimmer Opacity 1: "+opac1+", Grayscale 1: "+gray1+", Opacity 2: "+opac2+", Grayscale 2: "+gray2);
 		} else { gray1 = (mins*grayscale/60).toPrecision(4); opac1 = (1-gray1/100).toPrecision(2);
 			gray2 = (grayscale-gray1).toPrecision(4); opac2 = (1-gray2/100).toPrecision(2);
 			night = moment().endOf("d").format("HH:mm:ss"); midnight = moment().startOf("d").format("HH:mm:ss");
