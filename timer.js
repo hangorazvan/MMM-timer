@@ -111,7 +111,7 @@ Module.register("timer", {
 		function night_mode() {
 			hide.forEach(function(element) {element.style.display = "none";});
 			wicon.forEach(function(element) {element.style.float = "right";});
-			wthr.forEach(function(element) {return element.style.transform = "translate(-720px, 290px)",element.style["text-align"] = "left";});
+			wthr.forEach(function(element) {return element.style.transform = "translate(-720px, 280px)",element.style["text-align"] = "left";});
 			comp.forEach(function(element) {return element.style.position = "absolute",
 				element.style.transform = "translate(-300px, -400px) scale(0.5)", element.style.width = "600px";});
 			mcal.forEach(function(element) {element.style.display = "none";});
