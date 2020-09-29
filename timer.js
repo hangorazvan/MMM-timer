@@ -8,7 +8,23 @@
  */
 Module.register("timer", {
 	defaults: {
-		debugging: false
+		bodysize: 1080,		// Minimum window width
+		nightMode: true,	// zoomed night mode for iPad 3
+
+		sharpMode: true,	// hourly alert notification
+		dateMode: true,		// specific date hourly custom notification
+		fadeMode: true,		// fade to dimmed mode over night and back in the morning
+		dimmMode: true,		// dimmed mode over night
+		dimming: 40,		// 0 = opacity 1, 100 = opacity 0, 40 = opacity 0.6
+
+		name1: "",		// Wife or girlfriend name
+		birthday1: "",		// day & month
+		name2: "",		// Husband or boyfriend name
+		birthday2: "",		// day & month
+		name3: "",		// Child or pet name
+		birthday3: "",		// day & month
+
+		debugging: false 	// midnight for custom timer start
 	},
 	
 //	getScripts: function() {
@@ -42,7 +58,8 @@ Module.register("timer", {
 		}, 60 * 1000);
 	},
 
-	timer: function() {	var self = this;
+	timer: function() {
+		var self = this;
 		var now = moment().format("HH:mm:ss");
 
 		if (this.config.debugging!==false) {
@@ -58,10 +75,10 @@ Module.register("timer", {
 		}
 
 		var hide = Array.from(document.querySelectorAll(".module:not(.clock):not(.currentweather):not(.compliments):not(.swatch):not(.connection)"));
-		var wicon = Array.from(document.querySelectorAll(".wicon"));
-		var wthr = Array.from(document.querySelectorAll(".currentweather"));
+		var icon = Array.from(document.querySelectorAll(".wicon"));
+		var weat = Array.from(document.querySelectorAll(".currentweather"));
 		var comp = Array.from(document.querySelectorAll(".pre-line"));
-		var mcal = Array.from(document.querySelectorAll(".monthly"));
+		var beat = Array.from(document.querySelectorAll(".swatch"));
 		var body = Array.from(document.querySelectorAll("body"));
 
 		body.forEach(function(element) {
@@ -83,50 +100,25 @@ Module.register("timer", {
 		}
 
 		function day_mode() {
-//			MM.getModules().withClass("module").exceptWithClass("clock currentweather compliments swatch connection").enumerate(function(module) {
-//				module.show(900, { lockString: this.identifier });
-//			});
-
-
-//			moduleWrapper.style.transition = "opacity " + speed / 1000 + "s";
-			// Restore the position. See hideModule() for more info.
-//			moduleWrapper.style.position = "static";
-//			MM.updateWrapperStates();
-			// Waiting for DOM-changes done in updateWrapperStates before we can start the animation.
-//			moduleWrapper.style.opacity = 1;
-
-
-			hide.forEach(function(element) {element.style.display = "inherit";});
-			wicon.forEach(function(element) {element.style.float = "left";});
-			wthr.forEach(function(element) {return element.style.transform = "translate(0, 0)", element.style.textAlign = "inherit";});
-			comp.forEach(function(element) {return element.style.position = "inherit", element.style.transform = "scale(1)", element.style.width = "inherit";});
-			mcal.forEach(function(element) {element.style.display = "table";});
+			hide.forEach(function(element) {return element.style.opacity = "1";});
+			icon.forEach(function(element) {return element.style.float = "left";});
+			weat.forEach(function(element) {return element.style.transform = "translate(0, 0)",
+				element.style.textAlign = "inherit", element.style.transition = "translate 1s ease";});
+			comp.forEach(function(element) {return element.style.width = "inherit",
+				element.style.transform = "scale(1)";});
+			beat.forEach(function(element) {return element.style.transform = "translateY(0)",
+				element.style.transition = "translate 1s ease";});
 		}
 
 		function night_mode() {
-//			MM.getModules().exceptWithClass("clock currentweather compliments swatch connection").enumerate(function(module) {
-//				module.hide(900, { lockString: this.identifier });
-//			});
-
-
-//			moduleWrapper.style.transition = "opacity " + speed / 1000 + "s";
-//			moduleWrapper.style.opacity = 0;
-//			setTimeout(function () {
-				// To not take up any space, we just make the position absolute.
-				// since it's fade out anyway, we can see it lay above or
-				// below other modules. This works way better than adjusting
-				// the .display property.
-//				moduleWrapper.style.position = "fixed";
-//				MM.updateWrapperStates();
-//			}, speed);
-
-
-			hide.forEach(function(element) {element.style.display = "none";});
-			wicon.forEach(function(element) {element.style.float = "right";});
-			wthr.forEach(function(element) {return element.style.transform = "translate(-720px, 280px)",element.style.textAlign = "left";});
-			comp.forEach(function(element) {return element.style.position = "absolute",
-				element.style.transform = "translate(-300px, -400px) scale(0.5)", element.style.width = "600px";});
-			mcal.forEach(function(element) {element.style.display = "none";});
+			hide.forEach(function(element) {return element.style.opacity = "0";});
+			icon.forEach(function(element) {return element.style.float = "right";});
+			weat.forEach(function(element) {return element.style.transform = "translate(-720px, 280px)",
+				element.style.textAlign = "left", element.style.transition = "translate 1s ease";});
+			comp.forEach(function(element) {return element.style.width = "600px",
+				element.style.transform = "translateY(-80px) scale(0.5)";});
+			beat.forEach(function(element) {return element.style.transform = "translateY(-15px)",
+				element.style.transition = "translate 1s ease";});
 		}
 	},
 
