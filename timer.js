@@ -1,6 +1,6 @@
 /* Magic Mirror
  *
- * MIT Licensed.
+  * MIT Licensed.
  *
  * Redesigned by Răzvan Cristea
  * for iPad 3 & HD display
@@ -44,12 +44,9 @@ Module.register("timer", {
 	},
 
 	variables: function() {
-		this.now = moment().format("HH:mm:ss");
-		this.date = moment().format("DD.MM mm:ss");
-		this.mins = moment().format("m");
-		this.secs = moment().format("s");
-		this.grayscale = this.config.dimming;
-		this.opacity = (1-this.grayscale/100).toPrecision(2);
+		this.now = moment().format("HH:mm:ss"); this.date = moment().format("DD.MM mm:ss");
+		this.mins = moment().format("m"); this.secs = moment().format("s");
+		this.grayscale = this.config.dimming; this.opacity = (1-this.grayscale/100).toPrecision(2);
 
 		if (this.config.debugging!==false) {
 			this.gray1 = (this.secs*(this.grayscale/60)/1).toPrecision(2); 
@@ -73,18 +70,15 @@ Module.register("timer", {
 			this.before = moment().startOf("d").subtract(1,"h").format("HH:mm:ss");
 			this.morning = moment().startOf("d").add(6,"h").format("HH:mm:ss");
 			this.after = moment().startOf("d").add(7,"h").format("HH:mm:ss");
-			this.winter = moment().format("M");
-			if ((this.winter >= "1" && this.winter <= "3") || (this.winter >= "11" && this.winter <= "12")) {
+			this.winter = moment().format("MM");
+			if ((this.winter >= "01" && this.winter <= "03") || (this.winter >= "10" && this.winter <= "12")) {
 				this.morning = this.morning + 1; this.after = this.after + 1;
 			}
 		}
 	},
 
 	timer: function() {
-		var self = this;
-		var now = this.now;
-		var midnight = this.midnight;
-		var morning = this.morning;
+		var self = this; var now = this.now; var midnight = this.midnight; var morning = this.morning;
 		var hide = Array.from(document.querySelectorAll(".module:not(.clock):not(.currentweather):not(.compliments):not(.swatch):not(.connection)"));
 		var icon = Array.from(document.querySelectorAll(".wicon"));
 		var weat = Array.from(document.querySelectorAll(".currentweather"));
@@ -118,7 +112,7 @@ Module.register("timer", {
 			comp.forEach(function(element) {return element.style.width = "inherit",
 				element.style.transform = "scale(1)";});
 			beat.forEach(function(element) {return element.style.transform = "translateY(0)",
-				element.style.transition = "translate 1s ease";});
+				element.style.transition = "translateY 1s ease";});
 		}
 
 		function night_mode() {
@@ -129,23 +123,15 @@ Module.register("timer", {
 			comp.forEach(function(element) {return element.style.width = "600px",
 				element.style.transform = "translateY(-80px) scale(0.5)";});
 			beat.forEach(function(element) {return element.style.transform = "translateY(-15px)",
-				element.style.transition = "translate 1s ease";});
+				element.style.transition = "translateY 1s ease";});
 		}
 	},
 
 	dimmer: function() {
-		var now = this.now;
-		var grayscale = this.grayscale;
-		var opacity = this.opacity;
-		var gray1 = this.gray1;
-		var gray2 = this.gray2;
-		var opac1 = this.opac1;
-		var opac2 = this.opac2;
-		var night = this.night;
-		var midnight = this.midnight;
-		var morning = this.morning;
-		var before = this.before;
-		var after = this.after;
+		var now = this.now; var grayscale = this.grayscale; var opacity = this.opacity;
+		var gray1 = this.gray1; var gray2 = this.gray2; var opac1 = this.opac1;
+		var opac2 = this.opac2; var night = this.night; var midnight = this.midnight;
+		var morning = this.morning; var before = this.before; var after = this.after;
 		var body = Array.from(document.querySelectorAll("body"));
 
 		if (this.config.dimmMode) {
@@ -169,13 +155,11 @@ Module.register("timer", {
 	},
 
 	notification: function() {
-		var now = this.now;
-		var date = this.date;
-		var mins = this.mins;
-		var secs = this.secs;
+		var now = this.now; var date = this.date;
+		var mins = this.mins; var secs = this.secs;
 		var ns_box = Array.from(document.querySelectorAll(".ns-box"));
-		
-		if (secs >= 58) { //not working this.sendNotification("HIDE_ALERT", {});
+
+		if (secs >= 58) { //not working this.sendNotification("HIDE_ALERT",{});
 			ns_box.forEach(function(element) {element.style.display = "none";});
 		}
 
@@ -211,7 +195,7 @@ Module.register("timer", {
 					type: "notification", title: "<i class=\"far fa-bell lime\"></i> " + this.translate("Sharp hour!"),
 					message: this.translate("Time it was ") + moment().format("H:mm") + "<br>" + this.translate("Have a nice evening!")
 				});
-			}
+			} 
 		}
 
 		if (this.config.dateMode) { 
@@ -247,5 +231,11 @@ Module.register("timer", {
 				});
 			}
 		}
-	}
+	},
+
+	notificationReceived: function(notification, payload, sender) {
+		if (notification === "ALL_MODULES_STARTED") {
+
+		}
+	},
 });
