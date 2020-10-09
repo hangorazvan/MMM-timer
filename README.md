@@ -1,5 +1,7 @@
 # notification
 
+
+
 MagicMirror 2 Notification alert for my own use on iPad3
 
 Set in config.js without position and is working in background.
