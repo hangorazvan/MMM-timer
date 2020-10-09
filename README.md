@@ -1,7 +1,5 @@
 # notification
 
-https://github.com/hangorazvan/timer/tree/notification
-
 MagicMirror 2 Notification receiver for my own use on iPad3, because the default alert module is full of shit!
 
 Working with timer in background.
