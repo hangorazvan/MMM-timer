@@ -93,7 +93,7 @@ Module.register("timer", {
 		var hide = Array.from(document.querySelectorAll(".module:not(.night)"));
 		var icon = Array.from(document.querySelectorAll(".wicon"));
 		var weat = Array.from(document.querySelectorAll(".currentweather"));
-		var comp = Array.from(document.querySelectorAll(".pre-line"));
+		var comp = Array.from(document.querySelectorAll(".complimentz"));
 		var body = Array.from(document.querySelectorAll("body"));
 
 		body.forEach(function(element) {return element.style.minHeight = window.innerHeight / (window.innerWidth / self.config.bodysize) + "px", element.style.minWidth = self.config.bodysize + "px"});
@@ -105,13 +105,13 @@ Module.register("timer", {
 			}
 		} else { day_mode(); body.forEach(function(element) {return element.style.transform = "scale(1)"})}
 
-		function day_mode() {
+		function day_mode() { // because this is better that stupid show.module
 			hide.forEach(function(element) {element.style.display = "inherit";}); icon.forEach(function(element) {element.style.float = "left"});
 			weat.forEach(function(element) {return element.style.transform = "translate(0, 0)", element.style.textAlign = "inherit"});
 			comp.forEach(function(element) {return element.style.width = "inherit", element.style.transform = "scale(1)"});
 		}
 
-		function night_mode() {
+		function night_mode() { // because this is better that stupid hide.module
 			hide.forEach(function(element) {element.style.display = "none"}); icon.forEach(function(element) {element.style.float = "right"});
 			weat.forEach(function(element) {return element.style.transform = "translate(-720px, 280px)", element.style.textAlign = "left"});
 			comp.forEach(function(element) {return element.style.width = "600px", element.style.transform = "translateY(-80px) scale(0.5)"});
