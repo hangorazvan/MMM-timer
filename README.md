@@ -9,6 +9,7 @@ All settings inside of module or in config.js
 
 	{
 		module: "notification",
+		position: "top_center",
 		config: {
 			startTitle: "<i class=\"lime fa fa-wifi\"></i> [ MagicMirror&sup2; ] &nbsp;",
 			startNotification: "Modular smart mirror platform",
