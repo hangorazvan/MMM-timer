@@ -14,6 +14,7 @@ All settings inside of module or in config.js
 			startNotification: "Modular smart mirror platform",
 			title: null,
 			notification: null,
-			timer: 5000
+			timer: 5000,
+			animationSpeed: config.animation
 			}
 	},
