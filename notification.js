@@ -1,23 +1,28 @@
 /* Magic Mirror
  *
+  * MIT Licensed.
+ *
  * Redesigned by Răzvan Cristea
  * for iPad 3 & HD display
- *
  * https://github.com/hangorazvan
- * Creative Commons BY-NC-SA 4.0, Romania.
  */
 Module.register("notification", {
 
-	defaults: {},
-	
-//	getScripts: function() {
-//		return ["moment.js"];
-//	},
+	defaults: {
+		startTitle: "<i class=\"lime fa fa-wifi\"></i> [ MagicMirror&sup2; ] &nbsp;",
+		startNotification: "Modular smart mirror platform",
+		title: null,
+		notification: null,
+		timer: 5000
+	},
 
+	getScripts: function() {
+		return ["moment.js"];
+	},
 
-//	getStyles: function () {
-//		return ["font-awesome.css"];
-//	},
+	getStyles: function () {
+		return ["font-awesome.css"];
+	},
 
 	getTranslations: function() {
 		return {
@@ -28,89 +33,75 @@ Module.register("notification", {
 
 	start: function() {
 		Log.info("Starting module: " + this.name);
-		var self = this;
-		setInterval(function() {
-			self.notification();
-		}, 1000);
+	},
+	
+	getDom: function() {
+		var wrapper = document.createElement("div");
+
+		var title = document.createElement("div");
+		title.className = "medium bright";
+		title.innerHTML = this.config.title;
+
+		var notification = document.createElement("div");
+		notification.className = "small light dimmed";
+		notification.innerHTML = this.config.notification;
+
+		wrapper.appendChild(title);
+		wrapper.appendChild(notification);
+		return wrapper;
 	},
 
-	notification: function() {
-		var now = moment().format("HH:mm:ss");
-		var secs = moment().format("s");
-		var date = moment().format("DD-MM mm:ss");
-		var ns_box = Array.from(document.querySelectorAll(".ns-box"));
-		
-		if (secs >= 15) { // not working this.sendNotification("HIDE_ALERT", {});
-			ns_box.forEach(function(element) {element.style.display = "none";});
+	onLine: function () {
+		this.config.title = this.config.startTitle;
+		this.config.notification = this.translate(this.config.startNotification);
+		this.updateDom(config.animation);
+	},
+
+	offLine: function () {
+		this.config.title = "<span class=\"orangered\"><i class=\"fa fa-wifi\"></i> [ MagicMirror&sup2; ] &nbsp;</span>";
+		this.config.notification = "<span class=\"orangered\">" + this.translate("No Internet connection!") + "</span>";
+		this.updateDom(config.animation);
+	},
+
+	notificationReceived: function (notification, payload, sender) {
+		var self = this;
+		if (notification === "ALL_MODULES_STARTED") {
+			this.config.title = this.config.startTitle;
+			this.config.notification = "<div class=\"xxxsmall light shade\">" + this.translate("All modules loaded and started succesfuly!") + "</div><div class=\"xxxsmall light shade\">Redesigned by Răzvan Cristea &copy; " + moment().year() + ", MIT License.</div>";
+			this.updateDom(config.animation); setTimeout(function () {self.onLine();}, this.config.timer * 2);
 		}
 
-		if (this.config.sharpMode) {
-			if ((now == "23:00:00") || (now == "00:00:00") || (now == "01:00:00")) {
-				this.sendNotification("SHOW_ALERT", {
-					type: "notification", title: "<i class='far fa-bell lime'></i> " + this.translate("Sharp hour!"),
-					message: this.translate("Time it was ") + moment().format("H:mm") + "<br>" + this.translate("Good night!")
-				});
-			} else if ((now == "02:00:00") || (now == "03:00:00") || (now == "04:00:00")) {
-				this.sendNotification("SHOW_ALERT", {
-					type: "notification", title: "<i class='far fa-bell lime'></i> " + this.translate("Sharp hour!"),
-					message: this.translate("Time it was ") + moment().format("H:mm") + "<br>" + this.translate("Sleep well!")
-				});
-			} else if ((now == "05:00:00") || (now == "06:00:00") || (now == "07:00:00") || (now == "08:00:00") || 
-				(now == "09:00:00") || (now == "10:00:00") || (now == "11:00:00")) {
-				this.sendNotification("SHOW_ALERT", {
-					type: "notification", title: "<i class='far fa-bell lime'></i> " + this.translate("Sharp hour!"),
-					message: this.translate("Time it was ") + moment().format("H:mm") + "<br>" + this.translate("Good morning!")
-				});
-			} else if ((now == "12:00:00") || (now == "13:00:00") || (now == "14:00:00")) {
-				this.sendNotification("SHOW_ALERT", {
-					type: "notification", title: "<i class='far fa-bell lime'></i> " + this.translate("Sharp hour!"),
-					message: this.translate("Time it was ") + moment().format("H:mm") + "<br>" + this.translate("Bon appetit!")
-				});
-			} else if ((now == "15:00:00") || (now == "16:00:00") || (now == "17:00:00")) {
-				this.sendNotification("SHOW_ALERT", {
-					type: "notification", title: "<i class='far fa-bell lime'></i> " + this.translate("Sharp hour!"),
-					message: this.translate("Time it was ") + moment().format("H:mm") + "<br>" + this.translate("Have a nice day!")
-				});
-			} else if ((now == "18:00:00") || (now == "19:00:00") || (now == "20:00:00") || (now == "21:00:00") || (now == "22:00:00")) {
-				this.sendNotification("SHOW_ALERT", {
-					type: "notification", title: "<i class='far fa-bell lime'></i> " + this.translate("Sharp hour!"),
-					message: this.translate("Time it was ") + moment().format("H:mm") + "<br>" + this.translate("Have a nice evening!")
-				});
-			}
+		if (notification === "ONLINE_NOTIFICATION") {
+			this.onLine();
 		}
 
-		if (this.config.dateMode) { 
-			if ((date == "25-12 00:06") || (date == "26-12 00:06")) {
-				this.sendNotification("SHOW_ALERT", { type: "notification", timer: 8000, 
-					title: "<i class='fa fa-gifts yellow'></i> " + this.translate("Marry Christmas!"),
-					message: this.translate("Happy holidays with many joys!")
-				});
-			} else if ((date == "01-01 00:06") || (date == "02-01 00:06")) {
-				this.sendNotification("SHOW_ALERT", { type: "notification", timer: 8000, 
-					title: "<i class='fa fa-glass-cheers yellow'></i> " + this.translate("Happy Birthday ") + moment().format("YYYY") + "!", 
-					message: this.translate("A new year as good as possible and good health!")
-				});
-			} else if (date == "14-02 00:06") {
-				this.sendNotification("SHOW_ALERT", { type: "notification", timer: 8000, 
-					title: "<i class='far fa-heart redrf'></i> " + this.translate("Happy Valentine's Day!"),
-					message: this.translate("Happy Valentine's and much happiness!")
-				});
-			} else if (date == this.config.Birthday1 + " 00:06") {
-				this.sendNotification("SHOW_ALERT", { type: "notification", timer: 8000, 
-					title: "<i class='fa fa-birthday-cake yellow'></i> " + this.translate("Happy Birthday, ") + this.config.Name1, 
-					message: this.translate("Good health and be happy! F")
-				});
-			} else if (date == this.config.Birthday2 + " 00:06") {
-				this.sendNotification("SHOW_ALERT", { type: "notification", timer: 8000,
-					title: "<i class='fa fa-birthday-cake yellow'></i> " + this.translate("Happy Birthday, ") + this.config.Name2, 
-					message: this.translate("Good health and be happy! M")
-				});
-			} else if (date == this.config.Birthday3 + " 00:06") {
-				this.sendNotification("SHOW_ALERT", { type: "notification", timer: 8000, 
-					title: "<i class='fa fa-birthday-cake yellow'></i> " + this.translate("Happy Birthday, ") + this.config.Name3, 
-					message: this.translate("Good health and be happy! M")
-				});
-			}
+		if (notification === "OFFLINE_NOTIFICATION") {
+			this.offLine();
+		}
+
+		if (notification === "NIGHT_NOTIFICATION") {
+			this.config.title = this.config.startTitle;
+			this.config.notification = this.translate("Dimmed night mode ") + parseInt(payload * 100) + "%";
+			this.updateDom();
+		}
+
+		if (notification === "DAY_NOTIFICATION") {
+			if (typeof payload.title === "undefined") {
+				payload.title = this.config.startTitle;
+			} else this.config.title = payload.title;
+
+			if (typeof payload.notification === "undefined") {
+				payload.notification = this.translate(this.config.startNotification);
+			} else this.config.notification = payload.notification;
+
+			if (typeof payload.timer === "undefined") {
+				payload.timer = this.config.timer;
+			} else this.config.timer = payload.timer;
+			this.updateDom(config.animation); setTimeout(function () {self.onLine();}, this.config.timer);
+		}
+
+		if (notification === "HIDE_NOTIFICATION") {
+			setTimeout(function () {self.onLine();}, this.config.timer);
 		}
 	},
 });
