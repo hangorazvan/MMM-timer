@@ -21,7 +21,7 @@ Module.register("notification", {
 	},
 
 	getStyles: function () {
-		return ["font-awesome.css"];
+		return ["notification.css", "font-awesome.css"];
 	},
 
 	getTranslations: function() {
