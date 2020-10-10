@@ -13,7 +13,7 @@ Module.register("notification", {
 		startNotification: "Modular smart mirror platform",
 		title: null,
 		notification: null,
-		timer: 5000,
+		timer: 9000,
 		animationSpeed: config.animation
 	},
 
@@ -22,7 +22,7 @@ Module.register("notification", {
 	},
 
 	getStyles: function () {
-		return ["notification.css", "font-awesome.css"];
+		return ["font-awesome.css"];
 	},
 
 	getTranslations: function() {
@@ -67,9 +67,8 @@ Module.register("notification", {
 
 	notificationReceived: function (notification, payload, sender) {
 		var self = this;
-		if (notification === "ALL_MODULES_STARTED") {this.config.title = this.config.startTitle;
-			this.config.notification = "<div class=\"xxxsmall light shade\">" + this.translate("All modules loaded and started succesfuly!") 
-			+ "</div><div class=\"xxxsmall light shade\">Redesigned by Răzvan Cristea &copy; " + moment().year() + ", MIT License.</div>";
+		if (notification === "DOM_OBJECTS_CREATED") {this.config.title = this.config.startTitle;
+			this.config.notification = "<div class=\"msmall\">Răzvan Cristea &copy; " + moment().year() + ", MIT License.</div>";
 			this.updateDom(this.config.animationSpeed);
 			setTimeout(function () {
 				self.onLine();
