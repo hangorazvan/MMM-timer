@@ -73,7 +73,7 @@ Module.register("notification", {
 			this.updateDom(this.config.animationSpeed);
 			setTimeout(function () {
 				self.onLine();
-			}, this.config.timer * 2);
+			}, this.config.timer);
 		}
 
 		if (notification === "ONLINE_NOTIFICATION") {this.onLine();}
@@ -104,9 +104,7 @@ Module.register("notification", {
 		}
 
 		if (notification === "HIDE_NOTIFICATION") {
-			setTimeout(function () {
-				self.onLine();
-			}, this.config.timer);
+			this.onLine();
 		}
 	},
 });
