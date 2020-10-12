@@ -1,10 +1,10 @@
 /* Magic Mirror
  *
-  * MIT Licensed.
- *
  * Redesigned by Răzvan Cristea
  * for iPad 3 & HD display
+ *
  * https://github.com/hangorazvan
+ * Creative Commons BY-NC-SA 4.0, Romania.
  */
 Module.register("notification", {
 
@@ -12,12 +12,13 @@ Module.register("notification", {
 		startTitle: "<i class=\"lime fa fa-wifi\"></i> [ MagicMirror&sup2; ] &nbsp;",
 		startNotification: "Modular smart mirror platform",
 		timer: 9000,
-		animationSpeed: config.animation
+		animationSpeed: 2000
 	},
-
+	
 	getScripts: function() {
 		return ["moment.js"];
 	},
+
 
 	getStyles: function () {
 		return ["font-awesome.css"];
