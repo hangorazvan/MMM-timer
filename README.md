@@ -14,6 +14,6 @@ All settings inside of module or in config.js
 			title: null,
 			notification: null,
 			timer: 5000,
-			animationSpeed: config.animation
+			animationSpeed: 2000
 			}
 	},
