@@ -84,7 +84,8 @@ Module.register("timer", {
 			this.after = moment().startOf("d").add(7,"h").format("HH:mm:ss");
 			this.winter = moment().format("MM");
 			if ((this.winter >= "01" && this.winter <= "03") || (this.winter >= "10" && this.winter <= "12")) {
-				this.morning = this.morning + 1; this.after = this.after + 1;
+				this.morning = moment().startOf("d").add(7,"h").format("HH:mm:ss");
+				this.after = moment().startOf("d").add(8,"h").format("HH:mm:ss");
 			}
 		}
 	},
