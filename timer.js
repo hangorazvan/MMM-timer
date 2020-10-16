@@ -1,37 +1,39 @@
-/* Magic Mirror
- *
-  * MIT Licensed.
- *
- * Redesigned by Răzvan Cristea
- * for iPad 3 & HD display
- * https://github.com/hangorazvan
- */
+/*	Magic Mirror 2
+*	Module: Timer
+*	by Razvan Cristea 
+*	https://github.com/hangorazvan
+*/
+
 Module.register("timer", {
 	defaults: {
+		timer: true,
 		bodysize: 1080,		// Minimum window width
 		nightMode: true,	// zoomed night mode for iPad 3
 
-		sharpMode: true,	// hourly alert notification
-		dateMode: true,		// specific date hourly custom notification
+		dimmer: true,
 		fadeMode: true,		// fade to dimmed mode over night and back in the morning
 		dimmMode: true,		// dimmed mode over night
 		dimming: 40,		// 0 = opacity 1, 100 = opacity 0, 40 = opacity 0.6
 
-		name1: "",		// Wife or girlfriend name
+		notification: true,
+		sharpMode: true,	// hourly alert notification
+		dateMode: true,		// specific date hourly custom notification
+		name1: "",			// Wife or girlfriend name
 		birthday1: "",		// day & month
-		name2: "",		// Husband or boyfriend name
+		name2: "",			// Husband or boyfriend name
 		birthday2: "",		// day & month
-		name3: "",		// Child or pet name
-		birthday3: "",		// day & month
+		name3: "",			// Child or pet name
+		birthday3: ""		// day & month
 
 		debugging: false 	// midnight for custom timer start
 	},
-
+	
 	getScripts: function() {
 		return ["moment.js"];
 	},
 
-	getStyles: function () {
+
+	getStyles: function () {a
 		return ["font-awesome.css"];
 	},
 
@@ -102,7 +104,7 @@ Module.register("timer", {
 
 		if (window.innerWidth < this.config.bodysize) { day_mode(); body.forEach(function(element) {return element.style.transform = "scale(" + window.innerWidth / self.config.bodysize + ")"});
 			if (this.config.nightMode) {
-				if (now >= midnight && now < morning) { night_mode(); body.forEach(function(element) {return element.style.transform = "scale(" + window.innerWidth / self.config.bodysize * 1.55 + ")"})} 
+				if (now >= midnight && now < morning) { night_mode(); body.forEach(function(element) {return element.style.transform = "scale(" + window.innerWidth / self.config.bodysize * 1.54 + ")"})} 
 				else { day_mode(); body.forEach(function(element) {return element.style.transform = "scale(" + window.innerWidth / self.config.bodysize + ")"})}
 			}
 		} else { day_mode(); body.forEach(function(element) {return element.style.transform = "scale(1)"})}
@@ -115,8 +117,8 @@ Module.register("timer", {
 
 		function night_mode() { // because this is better that stupid hide.module
 			hide.forEach(function(element) {element.style.display = "none"}); icon.forEach(function(element) {element.style.float = "right"});
-			weat.forEach(function(element) {return element.style.transform = "translate(-720px, 280px)", element.style.textAlign = "left"});
-			comp.forEach(function(element) {return element.style.width = "600px", element.style.transform = "translateY(-100%) scale(0.5)"});
+			weat.forEach(function(element) {return element.style.transform = "translate(-720px, 305px)", element.style.textAlign = "left"});
+			comp.forEach(function(element) {return element.style.width = "500px", element.style.transform = "translateY(-125%) scale(0.6)"});
 		}
 	},
 
@@ -151,9 +153,9 @@ Module.register("timer", {
 		var now = this.now; var date = this.date; var mins = this.mins; var secs = this.secs;
 		var sharp = "<i class=\"far fa-bell lime\"></i> " + this.translate("Time it was ") + moment().format("H:mm");
 
-		if (secs == "30") {
-			if (window.navigator.onLine === true) {this.sendNotification("ONLINE_NOTIFICATION")}
-			else if (window.navigator.onLine === false) {this.sendNotification("OFFLINE_NOTIFICATION")}
+		if (secs == "58") {
+			if (window.navigator.onLine == true) {this.sendNotification("ONLINE_NOTIFICATION")}
+			else if (window.navigator.onLine == false) {this.sendNotification("OFFLINE_NOTIFICATION")}
 		}
 
 		if (this.config.sharpMode) {
