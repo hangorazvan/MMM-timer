@@ -6,16 +6,13 @@
 
 Module.register("timer", {
 	defaults: {
-		timer: true,
 		bodysize: 1080,		// Minimum window width
 		nightMode: true,	// zoomed night mode for iPad 3
 
-		dimmer: true,
 		fadeMode: true,		// fade to dimmed mode over night and back in the morning
 		dimmMode: true,		// dimmed mode over night
 		dimming: 40,		// 0 = opacity 1, 100 = opacity 0, 40 = opacity 0.6
 
-		notification: true,
 		sharpMode: true,	// hourly alert notification
 		dateMode: true,		// specific date hourly custom notification
 		name1: "",			// Wife or girlfriend name
@@ -104,7 +101,7 @@ Module.register("timer", {
 
 		if (window.innerWidth < this.config.bodysize) { day_mode(); body.forEach(function(element) {return element.style.transform = "scale(" + window.innerWidth / self.config.bodysize + ")"});
 			if (this.config.nightMode) {
-				if (now >= midnight && now < morning) { night_mode(); body.forEach(function(element) {return element.style.transform = "scale(" + window.innerWidth / self.config.bodysize * 1.54 + ")"})} 
+				if (now >= midnight && now < morning) { night_mode(); body.forEach(function(element) {return element.style.transform = "scale(" + window.innerWidth / self.config.bodysize * 1.53 + ")"})} 
 				else { day_mode(); body.forEach(function(element) {return element.style.transform = "scale(" + window.innerWidth / self.config.bodysize + ")"})}
 			}
 		} else { day_mode(); body.forEach(function(element) {return element.style.transform = "scale(1)"})}
@@ -117,7 +114,7 @@ Module.register("timer", {
 
 		function night_mode() { // because this is better that stupid hide.module
 			hide.forEach(function(element) {element.style.display = "none"}); icon.forEach(function(element) {element.style.float = "right"});
-			weat.forEach(function(element) {return element.style.transform = "translate(-720px, 305px)", element.style.textAlign = "left"});
+			weat.forEach(function(element) {return element.style.transform = "translate(-700px, 300px)", element.style.textAlign = "left"});
 			comp.forEach(function(element) {return element.style.width = "500px", element.style.transform = "translateY(-125%) scale(0.6)"});
 		}
 	},
@@ -154,8 +151,13 @@ Module.register("timer", {
 		var sharp = "<i class=\"far fa-bell lime\"></i> " + this.translate("Time it was ") + moment().format("H:mm");
 
 		if (secs == "58") {
-			if (window.navigator.onLine == true) {this.sendNotification("ONLINE_NOTIFICATION")}
-			else if (window.navigator.onLine == false) {this.sendNotification("OFFLINE_NOTIFICATION")}
+			if (window.navigator.onLine == true) {
+				if ((now >= "00:00:00") && (now < "07:00:00")) {
+					this.sendNotification("NIGHT_ONLINE_NOTIFICATION", this.opacity)
+				} else this.sendNotification("DAY_ONLINE_NOTIFICATION")
+			} else if (window.navigator.onLine == false) {
+				this.sendNotification("OFFLINE_NOTIFICATION")
+			}
 		}
 
 		if (this.config.sharpMode) {
