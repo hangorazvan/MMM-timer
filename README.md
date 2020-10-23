@@ -10,16 +10,13 @@ All settings inside of module or in config.js
 	{
 		module: "timer",
 		config: {
-			timer: true,
 			bodysize: 1080,		// Minimum window width
 			nightMode: true,	// zoomed night mode for iPad 3
 
-			dimmer: true,
 			fadeMode: true,		// fade to dimmed mode over night and back in the morning
 			dimmMode: true,		// dimmed mode over night
 			dimming: 40,		// 0 = opacity 1, 100 = opacity 0, 40 = opacity 0.6
 
-			notification: true,
 			sharpMode: true,	// hourly alert notification
 			dateMode: true,		// specific date hourly custom notification
 			name1: "",			// Wife or girlfriend name
