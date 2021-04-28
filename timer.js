@@ -30,7 +30,7 @@ Module.register("timer", {
 	},
 
 
-	getStyles: function () {a
+	getStyles: function () {
 		return ["font-awesome.css"];
 	},
 
@@ -41,7 +41,7 @@ Module.register("timer", {
 		};
 	},
 
-	start: function() {
+	start: function () {
 		Log.info("Starting module: " + this.name);
 		var self = this;
 		setInterval(function () {
@@ -52,7 +52,7 @@ Module.register("timer", {
 		}, 1000);
 	},
 
-	variables: function() {
+	variables: function () {
 		this.now = moment().format("HH:mm:ss"); this.date = moment().format("DD.MM mm:ss");
 		this.mins = moment().format("m"); this.secs = moment().format("s");
 		this.grayscale = this.config.dimming; this.opacity = (1 - this.grayscale / 100).toPrecision(2);
@@ -81,7 +81,7 @@ Module.register("timer", {
 			this.before = moment().startOf("d").subtract(1,"h").format("HH:mm:ss");
 			this.morning = moment().startOf("d").add(6,"h").format("HH:mm:ss");
 			this.after = moment().startOf("d").add(7,"h").format("HH:mm:ss");
-			this.winter = moment().format("MM");
+			this.weekday = moment().format("E"); this.winter = moment().format("MM");
 			if ((this.winter >= "01" && this.winter <= "03") || (this.winter >= "10" && this.winter <= "12")) {
 				this.morning = moment().startOf("d").add(7,"h").format("HH:mm:ss");
 				this.after = moment().startOf("d").add(8,"h").format("HH:mm:ss");
@@ -89,37 +89,44 @@ Module.register("timer", {
 		}
 	},
 
-	timer: function() { var self = this; 
-		var now = this.now; var midnight = this.midnight; var morning = this.morning;
+	timer: function () {
+		var now = this.now; var midnight = this.midnight; 
+		var morning = this.morning; var self = this;
 		var hide = Array.from(document.querySelectorAll(".module:not(.night)"));
 		var icon = Array.from(document.querySelectorAll(".wicon"));
 		var weat = Array.from(document.querySelectorAll(".currentweather"));
 		var comp = Array.from(document.querySelectorAll(".complimentz"));
+		var fish = Array.from(document.querySelectorAll(".yframe"));
 		var body = Array.from(document.querySelectorAll("body"));
 
 		body.forEach(function(element) {return element.style.minHeight = window.innerHeight / (window.innerWidth / self.config.bodysize) + "px", element.style.minWidth = self.config.bodysize + "px"});
 
 		if (window.innerWidth < this.config.bodysize) { day_mode(); body.forEach(function(element) {return element.style.transform = "scale(" + window.innerWidth / self.config.bodysize + ")"});
-			if (this.config.nightMode) {
+			if (this.config.zoomMode) {
 				if (now >= midnight && now < morning) { night_mode(); body.forEach(function(element) {return element.style.transform = "scale(" + window.innerWidth / self.config.bodysize * 1.53 + ")"})} 
 				else { day_mode(); body.forEach(function(element) {return element.style.transform = "scale(" + window.innerWidth / self.config.bodysize + ")"})}
 			}
-		} else { day_mode(); body.forEach(function(element) {return element.style.transform = "scale(1)"})}
+		} else { day_mode(); body.forEach(function(element) {return element.style.transform = "scale(1)"})
+		}
 
 		function day_mode() { // because this is better that stupid show.module
-			hide.forEach(function(element) {element.style.display = "inherit";}); icon.forEach(function(element) {element.style.float = "left"});
+			hide.forEach(function(element) {return element.style.display = "inherit";}); 
+			icon.forEach(function(element) {return element.style.float = "left"});
 			weat.forEach(function(element) {return element.style.transform = "translate(0, 0)", element.style.textAlign = "inherit"});
 			comp.forEach(function(element) {return element.style.width = "inherit", element.style.transform = "scale(1)"});
+			fish.forEach(function(element) {return element.style.display = "none"});
 		}
 
 		function night_mode() { // because this is better that stupid hide.module
-			hide.forEach(function(element) {element.style.display = "none"}); icon.forEach(function(element) {element.style.float = "right"});
-			weat.forEach(function(element) {return element.style.transform = "translate(-700px, 300px)", element.style.textAlign = "left"});
+			hide.forEach(function(element) {return element.style.display = "none"}); 
+			icon.forEach(function(element) {return element.style.float = "right"});
+			weat.forEach(function(element) {return element.style.transform = "translate(-730px, 280px)", element.style.textAlign = "left"});
 			comp.forEach(function(element) {return element.style.width = "500px", element.style.transform = "translateY(-125%) scale(0.6)"});
+			fish.forEach(function(element) {return element.style.display = "block"});
 		}
 	},
 
-	dimmer: function() {
+	dimmer: function () {
 		var now = this.now; var grayscale = this.grayscale; var opacity = this.opacity;
 		var gray1 = this.gray1; var gray2 = this.gray2; var opac1 = this.opac1;
 		var opac2 = this.opac2; var night = this.night; var midnight = this.midnight;
@@ -131,12 +138,12 @@ Module.register("timer", {
 				if (this.config.fadeMode) {
 					if (now >= before && now < night) {
 						body.forEach(function(element) {return element.style.opacity = opac1, element.style.filter = "grayscale(" + gray1 + "%)"})
-						this.sendNotification("NIGHT_NOTIFICATION", this.opac1)
+						this.sendNotification("NIGHT_NOTIFICATION", this.gray1)
 					} else if (now >= midnight && now < morning) {
 						body.forEach(function(element) {return element.style.opacity = opacity, element.style.filter = "grayscale(" + grayscale + "%)"})
 					} else if (now >= morning && now < after) {
 						body.forEach(function(element) {return element.style.opacity = opac2, element.style.filter = "grayscale(" + gray2 + "%)"})
-						this.sendNotification("NIGHT_NOTIFICATION", this.opac2)
+						this.sendNotification("NIGHT_NOTIFICATION", this.gray2)
 					} else { body.forEach(function(element) {return element.style.opacity = "1", element.style.filter = "grayscale(0%)"})}
 				} else { if (now >= midnight && now < morning) {
 						body.forEach(function(element) {return element.style.opacity = opacity, element.style.filter = "grayscale(" + grayscale + "%)"})
@@ -146,14 +153,16 @@ Module.register("timer", {
 		}
 	},
 
-	notification: function() {
+	notification: function () {
 		var now = this.now; var date = this.date; var mins = this.mins; var secs = this.secs;
 		var sharp = "<i class=\"far fa-bell lime\"></i> " + this.translate("Time it was ") + moment().format("H:mm");
 
 		if (secs == "58") {
 			if (window.navigator.onLine == true) {
-				if ((now >= "00:00:00") && (now < "07:00:00")) {
-					this.sendNotification("NIGHT_ONLINE_NOTIFICATION", this.opacity)
+				if (this.config.nightMode) {
+					if ((now >= "23:00:00") && (now < "23:59:59") || (now >= "06:00:00") && (now < "06:59:59")) {
+						this.sendNotification("NIGHT_ONLINE_NOTIFICATION", this.opacity)
+					} else this.sendNotification("DAY_ONLINE_NOTIFICATION")
 				} else this.sendNotification("DAY_ONLINE_NOTIFICATION")
 			} else if (window.navigator.onLine == false) {
 				this.sendNotification("OFFLINE_NOTIFICATION")
