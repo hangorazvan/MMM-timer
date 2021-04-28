@@ -30,19 +30,19 @@ Module.register("notification", {
 		};
 	},
 
-	start: function() {
+	start: function () {
 		Log.info("Starting module: " + this.name);
 	},
 	
-	getDom: function() {
+	getDom: function () {
 		var wrapper = document.createElement("div");
 
 		var title = document.createElement("div");
-		title.className = "smedium bright";
+		title.className = "medium bright";
 		title.innerHTML = this.title;
 
 		var notification = document.createElement("div");
-		notification.className = "ssmall light dimmed";
+		notification.className = "small light dimmed";
 		notification.style.maxHeight = "25px";
 		notification.innerHTML = this.notification;
 
@@ -65,13 +65,14 @@ Module.register("notification", {
 
 	notificationReceived: function (notification, payload, sender) {
 		var self = this;
-		if (notification === "DOM_OBJECTS_CREATED") {this.title = this.config.startTitle;
+		if (notification === "DOM_OBJECTS_CREATED") {
+			this.title = this.config.startTitle;
 			this.notification = "Răzvan Cristea &copy; " + moment().year() + ", MIT License.";
 			this.updateDom(this.config.animationSpeed);
 
 			setTimeout(function () {
 				self.onLine();
-			}, this.config.timer);
+			},	this.config.timer);
 		}
 
 		if (notification === "DAY_ONLINE_NOTIFICATION") {this.onLine();}
@@ -79,15 +80,10 @@ Module.register("notification", {
 		if (notification === "OFFLINE_NOTIFICATION") {this.offLine();}
 
 		if (notification === "NIGHT_ONLINE_NOTIFICATION") {
-			this.notification = this.translate("Dimmed night mode ") + parseInt(payload * 100) + "%";
+			this.notification = this.translate("Dimmed night mode ") + parseInt(payload) + "%";
 			this.updateDom(this.config.animationSpeed);
 		}
-
-		if (notification === "NIGHT_NOTIFICATION") {
-			this.notification = this.translate("Dimmed night mode ") + parseInt(payload * 100) + "%";
-			this.updateDom();
-		}
-
+		
 		if (notification === "DAY_NOTIFICATION") {
 			if (typeof payload.title === "undefined") {
 				payload.title = this.config.startTitle;
