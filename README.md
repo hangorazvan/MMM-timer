@@ -3,6 +3,7 @@
 https://github.com/hangorazvan/timer/tree/notification
 
 MagicMirror 2 Notification alert & timer trigger for my own use on iPad3
+<br>This module is no longer maintained, will not have any improvements or bug fixes.
 
 Set in config.js without position and is working in background.
 All settings inside of module or in config.js
